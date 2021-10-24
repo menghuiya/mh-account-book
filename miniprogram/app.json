@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/count/index",
+    "pages/user/index",
+    "pages/uploadFile/index"
+  ],
+  "tabBar": {
+    "color": "#D5D6D7",
+    "selectedColor": "#FFB92C",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath":"./images/tabbar/home.png",
+        "selectedIconPath": "./images/tabbar/home-active.png",
+        "text": "账单"
+      },
+      {
+        "pagePath": "pages/count/index",
+        "iconPath":"./images/tabbar/add.png",
+        "selectedIconPath": "./images/tabbar/add-active.png",
+        "text": "新增"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath":"./images/tabbar/user.png",
+        "selectedIconPath": "./images/tabbar/user-active.png",
+        "text": "用户"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "梦回小账本",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index"
+  }
+}

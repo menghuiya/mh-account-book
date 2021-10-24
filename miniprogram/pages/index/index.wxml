@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <van-tabs sticky animated swipeable active="{{activeMonth}}" ellipsis="{{false}}" bind:change="onChange" tab-active-class="mh-nav-active" >
+    <van-tab title="{{activeMonth===item.month?nowYear+'年'+item.name:item.name}}" wx:for="{{monthData}}" wx:for-item="item" name="{{item.month}}" wx:key="month" >
+      <view>
+        {{item.name}}
+      </view>
+    </van-tab>
+  </van-tabs>
+
+</view>

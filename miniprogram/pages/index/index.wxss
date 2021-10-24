@@ -1,0 +1,9 @@
+/**index.wxss**/
+
+page {
+  background-color: #f6f6f6;
+}
+.mh-nav-active{
+  font-weight: 600 !important;
+}
+
