@@ -3,7 +3,84 @@
 page {
   background-color: #f6f6f6;
 }
-.mh-nav-active{
+.mh-nav-active {
   font-weight: 600 !important;
 }
+.container {
+  padding: 20rpx;
+}
 
+.mh-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+.mh-month-card {
+  background: linear-gradient(to right, #43a1fc, #74b1c7);
+  border-radius: 20rpx;
+  padding: 20rpx 0;
+  margin: 20rpx;
+  color: #ffffff;
+  display: flex;
+  font-size: 32rpx;
+}
+.mh-month-card .card-left {
+  padding: 0 40rpx;
+  border-right: 1rpx solid #66b6f1;
+}
+.card-msg {
+  font-size: 24rpx;
+  color: #bcddfd;
+}
+.card-data {
+  font-size: 38rpx;
+  transform: scaleY(1.2);
+}
+.mh-month-card .card-center {
+  padding: 0 40rpx;
+}
+
+.card-margin-top {
+  margin-top: 10rpx;
+}
+
+.mh-month-card .card-right {
+  flex: 1;
+  text-align: right;
+  padding: 0 20rpx;
+}
+.card-right-btn {
+  font-size: 24rpx;
+  padding: 6rpx 12rpx;
+  border: 1px solid #84c3f0;
+  display: inline-block;
+  border-radius: 999rpx;
+}
+
+.mh-group {
+  border-radius: 20rpx !important;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 20rpx;
+}
+
+.mh-group-title {
+  display: flex;
+  font-size: 22rpx;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  padding-top: 20rpx;
+  align-items: center;
+}
+.mh-group-title-date {
+  font-weight: 600;
+  font-size: 24rpx;
+}
+
+.mh-group-title-count-des {
+  color: #c0c4cc;
+  margin-left: 10rpx;
+}
+
+.mh-group-title-count-data {
+  color: #606266;
+}
