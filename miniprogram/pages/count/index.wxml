@@ -4,9 +4,9 @@
     <van-tab title="支出">
       <view class="mh-pay-head">
         <view class="pay-head-left">
-          <van-icon name="gold-coin" color="#FFD30C" size="50rpx" />
+          <van-icon name="{{selectType.icon}}" color="{{selectType.iconColor}}" size="50rpx" />
           <view class="mh-pay-select" bind:tap="changeType">
-            现金
+            {{selectType.name}}
             <van-icon name="arrow-down" />
           </view>
         </view>
@@ -15,7 +15,15 @@
           <view class="mh-amount-text" for="amount" bind:tap="_focusInput">¥{{amount}}</view>
         </view>
       </view>
-      <view class="mh-pay-content"></view>
+      <view class="mh-pay-content">
+        <view class="mh-content-head">111</view>
+        <view class="mh-content-body">
+          <view class="mh-body-card {{first_id===item.id?'mh-body-card-active':''}}" wx:for="{{first_names}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bind:tap="typeClick">
+            <image class="mh-body-card-img" src="{{first_id===item.id?item.image:item.image_default}}" />
+            <text class="mh-body-card-text">{{item.goods_name}}</text>
+          </view>
+        </view>
+      </view>
     </van-tab>
     <van-tab title="收入">内容 2</van-tab>
   </van-tabs>
