@@ -4,26 +4,81 @@ const { envList } = require("../../envList.js");
 
 Page({
   data: {
-    monthData: [
-      { month: 1, name: "1月" },
-      { month: 2, name: "2月" },
-      { month: 3, name: "3月" },
-      { month: 4, name: "4月" },
-      { month: 5, name: "5月" },
-      { month: 6, name: "6月" },
-      { month: 7, name: "7月" },
-      { month: 8, name: "8月" },
-      { month: 9, name: "9月" },
-      { month: 10, name: "10月" },
-      { month: 11, name: "11月" },
-      { month: 12, name: "12月" },
-    ],
-    activeMonth: 1,
-    nowYear: 2021,
     envList,
     selectedEnv: envList[0],
     haveCreateCollection: false,
-    monthDatas: [],
+    monthDatas: [
+      {
+        date: "29",
+        pay: 20000,
+        income: 0,
+        data: [
+          {
+            type: "电子产品",
+            amount: 8000,
+            time: "22:55",
+            des: "买了一台电脑",
+            id: 1,
+          },
+          {
+            type: "服饰",
+            amount: 1000,
+            time: "22:55",
+            des: "去春熙路买了一件衣服",
+            id: 2,
+          },
+          {
+            type: "奶茶",
+            amount: 25,
+            time: "22:55",
+            des: "点了一杯奶茶",
+            id: 3,
+          },
+          {
+            type: "午餐",
+            amount: 20,
+            time: "22:55",
+            des: "吃了午餐",
+            id: 4,
+          },
+        ],
+      },
+      {
+        date: "28",
+        pay: 20000,
+        income: 0,
+        data: [
+          {
+            type: "电子产品",
+            amount: 5999,
+            time: "22:55",
+            des: "买了一个iPhone13",
+            id: 5,
+          },
+          {
+            type: "服饰",
+            amount: 1000,
+            time: "22:55",
+            des: "淘宝上买了衣服",
+            id: 6,
+          },
+          {
+            type: "奶茶",
+            amount: 25,
+            time: "22:55",
+            des: "饿了吗点了奶茶",
+            id: 7,
+          },
+          {
+            type: "午餐",
+            amount: 20,
+            time: "22:55",
+            des: "吃了午餐",
+            id: 8,
+          },
+        ],
+      },
+    ],
   },
 
   onClickPowerInfo(e) {
@@ -109,21 +164,11 @@ Page({
       });
   },
   onLoad() {
-    const date = new Date();
-    this.setData({
-      //通过setData来修改
-      activeMonth: date.getMonth() + 1,
-      nowYear: date.getFullYear(),
-    });
-  },
-  onChange(event) {
-    wx.showToast({
-      title: `切换到标签 ${event.detail.name}`,
-      icon: "none",
-    });
-    this.setData({
-      //通过setData来修改
-      activeMonth: event.detail.name,
-    });
+    // const date = new Date();
+    // this.setData({
+    //   //通过setData来修改
+    //   activeMonth: date.getMonth() + 1,
+    //   nowYear: date.getFullYear(),
+    // });
   },
 });

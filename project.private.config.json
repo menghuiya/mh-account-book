@@ -19,8 +19,8 @@
           "query": ""
         },
         {
-          "name": "pages/getOpenId/index",
-          "pathName": "pages/getOpenId/index",
+          "name": "pages/count/index",
+          "pathName": "pages/count/index",
           "query": "",
           "scene": null
         },
@@ -57,6 +57,7 @@
         {
           "name": "pages/updateRecordSuccess/index",
           "pathName": "pages/updateRecordSuccess/index",
+          "query": "",
           "scene": null
         }
       ]

@@ -19,17 +19,16 @@
     </view>
   </view>
   <view class="mh-title">每日记录</view>
-  <van-cell-group custom-class="mh-group">
+  <van-cell-group custom-class="mh-group" wx:for="{{monthDatas}}" wx:for-item="item" wx:key="date">
     <view class="mh-group-title">
-      <view class="mh-group-title-date">29日</view>
+      <view class="mh-group-title-date">{{item.date}}日</view>
       <view class="mh-group-title-count">
         <text class="mh-group-title-count-des">支出(元)：</text>
-        <text class="mh-group-title-count-data">2000.00</text>
+        <text class="mh-group-title-count-data">{{item.pay}}</text>
         <text class="mh-group-title-count-des">收入(元)：</text>
-        <text class="mh-group-title-count-data">0.00</text>
+        <text class="mh-group-title-count-data">{{item.income}}</text>
       </view>
     </view>
-    <van-cell icon="shopping-cart" title="电子产品" value="8000.00" label="22:55 买了一台电脑" />
-    <van-cell icon="shop-collect" title="服饰" value="2000.00" label="22:55 商城买了一件衣服" />
+    <van-cell icon="shopping-cart" title="{{dayItem.type}}" value="{{dayItem.amount}}" label="{{dayItem.time+dayItem.des}}" wx:for="{{item.data}}" wx:for-item="dayItem" wx:for-index="index" wx:key="id" />
   </van-cell-group>
 </view>

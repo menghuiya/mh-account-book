@@ -1,5 +1,23 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
-  统计
-
+  <van-tabs active="{{ active }}" bind:change="onChange" color="#FFD608">
+    <van-tab title="支出">
+      <view class="mh-pay-head">
+        <view class="pay-head-left">
+          <van-icon name="gold-coin" color="#FFD30C" size="50rpx" />
+          <view class="mh-pay-select" bind:tap="changeType">
+            现金
+            <van-icon name="arrow-down" />
+          </view>
+        </view>
+        <view class="pay-head-right">
+          <input class="mh-input-amount" type="digit" id="amount" model:value="{{amount}}" focus="{{inputFocus}}" />
+          <view class="mh-amount-text" for="amount" bind:tap="_focusInput">¥{{amount}}</view>
+        </view>
+      </view>
+      <view class="mh-pay-content"></view>
+    </van-tab>
+    <van-tab title="收入">内容 2</van-tab>
+  </van-tabs>
+  <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
 </view>
