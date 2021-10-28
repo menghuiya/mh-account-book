@@ -58,15 +58,25 @@ page {
   color: #dbe3ea;
   padding: 10rpx;
   box-sizing: border-box;
+  font-size: 28rpx;
 }
 
 .mh-body-card-img {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
 }
 
 .mh-body-card-active {
-  color: #fff;
-  background: #ffd30c;
+  color: #000;
+  /* background: #ffd30c; */
   border-radius: 10rpx;
+}
+
+.mh-pay-foot {
+  background-color: #fff;
+}
+
+.pay-foot-btn {
+  padding: 20rpx;
+  margin: auto;
 }

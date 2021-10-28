@@ -33,7 +33,7 @@ Page({
     first_names: [
       {
         id: 1,
-        goods_name: "吃饭",
+        goods_name: "早中晚餐",
         image: "/images/types/eat.png",
         image_default: "/images/types/eat-default.png",
       },
@@ -45,45 +45,51 @@ Page({
       },
       {
         id: 3,
-        goods_name: "购物",
+        goods_name: "商城购物",
         image: "/images/types/shop.png",
         image_default: "/images/types/shop-default.png",
       },
       {
         id: 4,
-        goods_name: "交通",
+        goods_name: "交通工具",
         image: "/images/types/traficc.png",
         image_default: "/images/types/traficc-default.png",
       },
       {
         id: 5,
-        goods_name: "保护眼睛",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
+        goods_name: "买菜",
+        image: "/images/types/vege.png",
+        image_default: "/images/types/vege-default.png",
       },
       {
         id: 6,
-        goods_name: "骨骼健康",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
+        goods_name: "饮料奶茶",
+        image: "/images/types/naicha.png",
+        image_default: "/images/types/naicha-default.png",
       },
       {
         id: 7,
-        goods_name: "滋补养生",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
+        goods_name: "游戏消费",
+        image: "/images/types/game.png",
+        image_default: "/images/types/game-default.png",
       },
       {
         id: 8,
-        goods_name: "增强免疫",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
+        goods_name: "生活用品",
+        image: "/images/types/life.png",
+        image_default: "/images/types/life-default.png",
       },
       {
         id: 9,
-        goods_name: "国内旅游",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
+        goods_name: "医疗健康",
+        image: "/images/types/medi.png",
+        image_default: "/images/types/medi-default.png",
+      },
+      {
+        id: 10,
+        goods_name: "其他",
+        image: "/images/types/other.png",
+        image_default: "/images/types/other-default.png",
       },
     ],
     first_id: 0, //用于判断是否是当前选中的
@@ -95,6 +101,40 @@ Page({
       iconColor: "#FFD30C",
     },
     inputFocus: false,
+    mark: "",
+    showTimePiker: false,
+    minHour: 10,
+    maxHour: 20,
+    minDate: new Date().getTime(),
+    maxDate: new Date(2019, 10, 1).getTime(),
+    currentDate: new Date().getTime(),
+    currentDateStr: "",
+    formatter(type, value) {
+      if (type === "year") {
+        return `${value}年`;
+      }
+      if (type === "month") {
+        return `${value}月`;
+      }
+      if (type === "day") {
+        return `${value}日`;
+      }
+      if (type === "hour") {
+        return `${value}时`;
+      }
+      if (type === "minute") {
+        return `${value}分`;
+      }
+
+      return value;
+    },
+  },
+  onpageshow() {
+    const formDate = require("../../utils/formatDate");
+    const tempDate = formDate("YYYY-mm-dd HH:MM", this.data.currentDate);
+    this.setData({
+      currentDateStr: tempDate,
+    });
   },
   onClose() {
     this.setData({ show: false });
@@ -125,5 +165,31 @@ Page({
     this.setData({
       first_id: tempId,
     });
+  },
+  showPopup() {
+    this.setData({ showTimePiker: true });
+  },
+
+  closePopup() {
+    this.setData({ showTimePiker: false });
+  },
+  onConfirm(event) {
+    const formDate = require("../../utils/formatDate");
+    const tempDate = formDate("YYYY-mm-dd HH:MM", event.detail);
+    this.setData({
+      currentDate: event.detail,
+      currentDateStr: tempDate,
+    });
+    this.closePopup();
+  },
+  savePay() {
+    const saveData = {
+      first_id: this.data.first_id,
+      amount: this.data.amount,
+      selectType: this.data.selectType,
+      mark: this.data.mark,
+      currentDate: this.data.currentDate,
+    };
+    console.log(saveData);
   },
 });

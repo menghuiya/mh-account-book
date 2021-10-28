@@ -11,19 +11,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath":"./images/tabbar/home.png",
+        "iconPath": "./images/tabbar/home.png",
         "selectedIconPath": "./images/tabbar/home-active.png",
         "text": "账单"
       },
       {
         "pagePath": "pages/count/index",
-        "iconPath":"./images/tabbar/add.png",
+        "iconPath": "./images/tabbar/add.png",
         "selectedIconPath": "./images/tabbar/add-active.png",
         "text": "新增"
       },
       {
         "pagePath": "pages/user/index",
-        "iconPath":"./images/tabbar/user.png",
+        "iconPath": "./images/tabbar/user.png",
         "selectedIconPath": "./images/tabbar/user-active.png",
         "text": "用户"
       }
@@ -39,6 +39,8 @@
   "sitemapLocation": "sitemap.json",
   "lazyCodeLoading": "requiredComponents",
   "usingComponents": {
-    "van-button": "@vant/weapp/button/index"
+    "van-button": "@vant/weapp/button/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
   }
 }

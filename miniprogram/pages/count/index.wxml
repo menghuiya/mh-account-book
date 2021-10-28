@@ -16,7 +16,6 @@
         </view>
       </view>
       <view class="mh-pay-content">
-        <view class="mh-content-head">111</view>
         <view class="mh-content-body">
           <view class="mh-body-card {{first_id===item.id?'mh-body-card-active':''}}" wx:for="{{first_names}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bind:tap="typeClick">
             <image class="mh-body-card-img" src="{{first_id===item.id?item.image:item.image_default}}" />
@@ -24,8 +23,20 @@
           </view>
         </view>
       </view>
+      <view class="mh-pay-foot">
+        <van-cell title="选择日期" is-link icon="/images/icons/date.png" value="{{ currentDateStr }}" bind:click="showPopup" />
+        <van-field title-width="0rpx" model:value="{{ mark }}" type="textarea" placeholder="请输入备注" autosize maxlength="200" border="{{ false }}" />
+        <view class="pay-foot-btn">
+          <van-button color="linear-gradient(to right, #43a1fc, #74b1c7)" bind:tap="savePay" round block size="small">
+            保存
+          </van-button>
+        </view>
+      </view>
     </van-tab>
     <van-tab title="收入">内容 2</van-tab>
   </van-tabs>
   <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
+  <van-popup show="{{ showTimePiker }}" bind:close="closePopup" position="bottom">
+    <van-datetime-picker type="datetime" value="{{ currentDate }}" formatter="{{ formatter }}" bind:confirm="onConfirm" bind:cancel="closePopup" />
+  </van-popup>
 </view>
