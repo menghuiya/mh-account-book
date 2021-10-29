@@ -1,5 +1,7 @@
 // index.js
 // const app = getApp()
+const formDate = require("../../utils/formatDate");
+const { mokeDataForPayType } = require("../../utils/mokeData");
 Page({
   data: {
     active: 0,
@@ -92,7 +94,11 @@ Page({
         image_default: "/images/types/other-default.png",
       },
     ],
+    payTypes: mokeDataForPayType,
+    payChildTypes: [],
     first_id: 0, //用于判断是否是当前选中的
+    payParentType: "food", //一级分类默认code
+    payChildType: "", //耳机分类code
     amount: 100,
     selectType: {
       name: "现金",
@@ -129,11 +135,15 @@ Page({
       return value;
     },
   },
-  onpageshow() {
-    const formDate = require("../../utils/formatDate");
+  onLoad() {
     const tempDate = formDate("YYYY-mm-dd HH:MM", this.data.currentDate);
+    this.initChildType(this.data.payParentType);
     this.setData({
       currentDateStr: tempDate,
+    });
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"],
     });
   },
   onClose() {
@@ -158,12 +168,24 @@ Page({
     });
   },
   typeClick(e) {
-    let tempId = e.currentTarget.dataset.id;
-    if (tempId === this.data.first_id) {
-      tempId = 0;
+    let tempCode = e.currentTarget.dataset.code;
+    if (tempCode === this.data.payChildType) {
+      tempCode = "";
     }
+    console.log(tempCode);
     this.setData({
-      first_id: tempId,
+      payChildType: tempCode,
+    });
+  },
+  payParentClick(e) {
+    let code = e.currentTarget.dataset.code;
+    this.initChildType(code);
+  },
+  initChildType(code) {
+    let tempData = this.data.payTypes.find((item) => item.code === code);
+    this.setData({
+      payParentType: code,
+      payChildTypes: tempData.children,
     });
   },
   showPopup() {
@@ -184,11 +206,12 @@ Page({
   },
   savePay() {
     const saveData = {
-      first_id: this.data.first_id,
       amount: this.data.amount,
       selectType: this.data.selectType,
       mark: this.data.mark,
       currentDate: this.data.currentDate,
+      payParentType: this.data.payParentType,
+      payChildType: this.data.payChildType,
     };
     console.log(saveData);
   },

@@ -45,6 +45,29 @@ page {
   margin: 20rpx 0;
   padding: 20rpx;
 }
+
+.mh-content-head {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.mh-content-head::-webkit-scrollbar {
+  display: none;
+}
+.mh-head-item {
+  margin: 0 0.35rem;
+  padding-bottom: 0.1rem;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+  color: #dce3ea;
+}
+
+.mh-head-item-active {
+  color: #000;
+}
 .mh-content-body {
   display: flex;
   flex-wrap: wrap;
@@ -67,7 +90,7 @@ page {
 }
 
 .mh-body-card-active {
-  color: #000;
+  color: #f8d02d;
   /* background: #ffd30c; */
   border-radius: 10rpx;
 }

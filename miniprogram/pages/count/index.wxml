@@ -16,10 +16,16 @@
         </view>
       </view>
       <view class="mh-pay-content">
+        <view class="mh-content-head">
+          <!-- <van-icon class="iconfont" class-prefix="icon" name="book" color="red" /> -->
+          <view class="mh-head-item {{payParentType===payParentItem.code?'mh-head-item-active':''}}" wx:for="{{payTypes}}" wx:for-item="payParentItem" wx:key="code" data-code="{{payParentItem.code}}" bind:tap="payParentClick">
+            {{payParentItem.name}}
+          </view>
+        </view>
         <view class="mh-content-body">
-          <view class="mh-body-card {{first_id===item.id?'mh-body-card-active':''}}" wx:for="{{first_names}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bind:tap="typeClick">
-            <image class="mh-body-card-img" src="{{first_id===item.id?item.image:item.image_default}}" />
-            <text class="mh-body-card-text">{{item.goods_name}}</text>
+          <view class="mh-body-card {{payChildType===item.code?'mh-body-card-active':''}}" wx:for="{{payChildTypes}}" wx:for-item="item" wx:key="code" data-code="{{item.code}}" bind:tap="typeClick">
+            <van-icon class-prefix="micon" name="{{item.icon}}" size="80rpx" />
+            <text class="mh-body-card-text">{{item.name}}</text>
           </view>
         </view>
       </view>
