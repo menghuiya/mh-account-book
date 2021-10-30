@@ -1,46 +1,51 @@
 <!-- index.wxml -->
 <view class="container">
   <van-tabs active="{{ active }}" bind:change="onChange" color="#FFD608">
-    <van-tab title="支出">
-      <view class="mh-pay-head">
-        <view class="pay-head-left">
-          <van-icon name="{{selectType.icon}}" color="{{selectType.iconColor}}" size="50rpx" />
-          <view class="mh-pay-select" bind:tap="changeType">
-            {{selectType.name}}
-            <van-icon name="arrow-down" />
-          </view>
-        </view>
-        <view class="pay-head-right">
-          <input class="mh-input-amount" type="digit" id="amount" model:value="{{amount}}" focus="{{inputFocus}}" />
-          <view class="mh-amount-text" for="amount" bind:tap="_focusInput">¥{{amount}}</view>
-        </view>
-      </view>
-      <view class="mh-pay-content">
-        <view class="mh-content-head">
-          <!-- <van-icon class="iconfont" class-prefix="icon" name="book" color="red" /> -->
-          <view class="mh-head-item {{payParentType===payParentItem.code?'mh-head-item-active':''}}" wx:for="{{payTypes}}" wx:for-item="payParentItem" wx:key="code" data-code="{{payParentItem.code}}" bind:tap="payParentClick">
-            {{payParentItem.name}}
-          </view>
-        </view>
-        <view class="mh-content-body">
-          <view class="mh-body-card {{payChildType===item.code?'mh-body-card-active':''}}" wx:for="{{payChildTypes}}" wx:for-item="item" wx:key="code" data-code="{{item.code}}" bind:tap="typeClick">
-            <van-icon class-prefix="micon" name="{{item.icon}}" size="80rpx" />
-            <text class="mh-body-card-text">{{item.name}}</text>
-          </view>
-        </view>
-      </view>
-      <view class="mh-pay-foot">
-        <van-cell title="选择日期" is-link icon="/images/icons/date.png" value="{{ currentDateStr }}" bind:click="showPopup" />
-        <van-field title-width="0rpx" model:value="{{ mark }}" type="textarea" placeholder="请输入备注" autosize maxlength="200" border="{{ false }}" />
-        <view class="pay-foot-btn">
-          <van-button color="linear-gradient(to right, #43a1fc, #74b1c7)" bind:tap="savePay" round block size="small">
-            保存
-          </van-button>
-        </view>
-      </view>
-    </van-tab>
-    <van-tab title="收入">内容 2</van-tab>
+    <van-tab title="支出"></van-tab>
+    <van-tab title="收入"></van-tab>
   </van-tabs>
+  <view class="mh-pay-box">
+    <view class="mh-pay-head">
+      <view class="pay-head-left">
+        <van-icon name="{{selectType.icon}}" color="{{selectType.iconColor}}" size="50rpx" />
+        <view class="mh-pay-select" bind:tap="changeType">
+          {{selectType.name}}
+          <van-icon name="arrow-down" />
+        </view>
+      </view>
+      <view class="pay-head-right">
+        <input class="mh-input-amount" type="digit" id="amount" model:value="{{amount}}" focus="{{inputFocus}}" />
+        <view class="mh-amount-text" for="amount" bind:tap="_focusInput">¥{{amount}}</view>
+      </view>
+    </view>
+    <view class="mh-pay-content">
+      <view class="mh-content-head">
+        <!-- <van-icon class="iconfont" class-prefix="icon" name="book" color="red" /> -->
+        <view class="mh-head-item {{payParentType===payParentItem.code?'mh-head-item-active':''}}" wx:for="{{payTypes}}" wx:for-item="payParentItem" wx:key="code" data-code="{{payParentItem.code}}" bind:tap="payParentClick">
+          {{payParentItem.name}}
+        </view>
+      </view>
+      <view class="mh-content-body">
+        <view class="mh-body-card {{payChildType===item.code?'mh-body-card-active':''}}" wx:for="{{payChildTypes}}" wx:for-item="item" wx:key="code" data-code="{{item.code}}" bind:tap="typeClick">
+          <!-- <van-icon class-prefix="micon" name="{{item.icon}}" size="80rpx" /> -->
+          <iconfont name="{{item.icon}}" class="mh-body-card-img" />
+          <text class="mh-body-card-text">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="mh-pay-foot">
+      <van-cell title="选择日期" is-link icon="/images/icons/date.png" value="{{ currentDateStr }}" bind:click="showPopup" />
+      <van-field title-width="80rpx" model:value="{{ mark }}" type="textarea" label="备注" placeholder="请输入备注内容" autosize="{{markHeight}}" maxlength="200" border="{{ false }}" />
+    </view>
+    <view class="pay-foot-btn-box">
+      <van-button type="primary" color="#FFA91F" bind:tap="savePay" custom-class="pay-foot-btn" plain block size="normal">
+        再记一笔
+      </van-button>
+      <van-button color="#FFA91F" bind:tap="savePay" custom-class="pay-foot-btn" block size="normal">
+        <text class="pay-foot-btn-text">保存</text>
+      </van-button>
+    </view>
+  </view>
   <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
   <van-popup show="{{ showTimePiker }}" bind:close="closePopup" position="bottom">
     <van-datetime-picker type="datetime" value="{{ currentDate }}" formatter="{{ formatter }}" bind:confirm="onConfirm" bind:cancel="closePopup" />

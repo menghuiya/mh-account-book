@@ -67,10 +67,14 @@ page {
 
 .mh-head-item-active {
   color: #000;
+  font-weight: 600;
 }
 .mh-content-body {
   display: flex;
   flex-wrap: wrap;
+  height: 420rpx;
+  overflow-y: auto;
+  align-content: flex-start;
 }
 
 .mh-body-card {
@@ -87,6 +91,7 @@ page {
 .mh-body-card-img {
   width: 80rpx;
   height: 80rpx;
+  filter: opacity(0.5) grayscale(100%);
 }
 
 .mh-body-card-active {
@@ -95,11 +100,28 @@ page {
   border-radius: 10rpx;
 }
 
+.mh-body-card-active .mh-body-card-img {
+  filter: opacity(1) grayscale(0%);
+}
+
 .mh-pay-foot {
   background-color: #fff;
 }
 
+.pay-foot-btn-box {
+  padding: 20rpx 40rpx;
+  display: flex;
+  justify-content: space-between;
+}
 .pay-foot-btn {
-  padding: 20rpx;
-  margin: auto;
+  width: 300rpx !important;
+  font-weight: 600;
+  border-radius: 10rpx !important;
+}
+.pay-foot-btn-text {
+  color: #000;
+}
+
+.mhicon {
+  width: 100rpx;
 }

@@ -1,10 +1,14 @@
 // index.js
 // const app = getApp()
 const formDate = require("../../utils/formatDate");
-const { mokeDataForPayType } = require("../../utils/mokeData");
+const {
+  mokeDataForPayType,
+  mokeDataForIncomType,
+} = require("../../utils/mokeData");
 Page({
   data: {
     active: 0,
+    billType: "pay",
     show: false,
     actions: [
       {
@@ -32,71 +36,9 @@ Page({
         iconColor: "#161616",
       },
     ],
-    first_names: [
-      {
-        id: 1,
-        goods_name: "早中晚餐",
-        image: "/images/types/eat.png",
-        image_default: "/images/types/eat-default.png",
-      },
-      {
-        id: 2,
-        goods_name: "水果",
-        image: "/images/types/fruit.png",
-        image_default: "/images/types/fruit-default.png",
-      },
-      {
-        id: 3,
-        goods_name: "商城购物",
-        image: "/images/types/shop.png",
-        image_default: "/images/types/shop-default.png",
-      },
-      {
-        id: 4,
-        goods_name: "交通工具",
-        image: "/images/types/traficc.png",
-        image_default: "/images/types/traficc-default.png",
-      },
-      {
-        id: 5,
-        goods_name: "买菜",
-        image: "/images/types/vege.png",
-        image_default: "/images/types/vege-default.png",
-      },
-      {
-        id: 6,
-        goods_name: "饮料奶茶",
-        image: "/images/types/naicha.png",
-        image_default: "/images/types/naicha-default.png",
-      },
-      {
-        id: 7,
-        goods_name: "游戏消费",
-        image: "/images/types/game.png",
-        image_default: "/images/types/game-default.png",
-      },
-      {
-        id: 8,
-        goods_name: "生活用品",
-        image: "/images/types/life.png",
-        image_default: "/images/types/life-default.png",
-      },
-      {
-        id: 9,
-        goods_name: "医疗健康",
-        image: "/images/types/medi.png",
-        image_default: "/images/types/medi-default.png",
-      },
-      {
-        id: 10,
-        goods_name: "其他",
-        image: "/images/types/other.png",
-        image_default: "/images/types/other-default.png",
-      },
-    ],
+
     payTypes: mokeDataForPayType,
     payChildTypes: [],
-    first_id: 0, //用于判断是否是当前选中的
     payParentType: "food", //一级分类默认code
     payChildType: "", //耳机分类code
     amount: 100,
@@ -107,6 +49,7 @@ Page({
       iconColor: "#FFD30C",
     },
     inputFocus: false,
+    markHeight: { maxHeight: 100, minHeight: 50 },
     mark: "",
     showTimePiker: false,
     minHour: 10,
@@ -160,7 +103,24 @@ Page({
     this.setData({ show: true });
   },
   onChange(e) {
-    console.log(e);
+    let tempData = {};
+    let tempType = "";
+    let tempbillType = "";
+    if (e.detail.index === 0) {
+      tempData = mokeDataForPayType;
+      tempType = "food";
+      tempbillType = "pay";
+    } else {
+      tempData = mokeDataForIncomType;
+      tempType = "work";
+      tempbillType = "income";
+    }
+    this.setData({
+      payTypes: tempData,
+      payChildType: "",
+      billType: tempbillType,
+    });
+    this.initChildType(tempType);
   },
   _focusInput() {
     this.setData({
@@ -212,7 +172,9 @@ Page({
       currentDate: this.data.currentDate,
       payParentType: this.data.payParentType,
       payChildType: this.data.payChildType,
+      billType: this.data.billType,
     };
+
     console.log(saveData);
   },
 });
