@@ -16,7 +16,8 @@
         "pages/userEmial/index",
         "pages/userSign/index",
         "pages/about/index",
-        "pages/property/index"
+        "pages/property/index",
+        "pages/billDetail/index"
       ]
     }
   ],

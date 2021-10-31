@@ -1,0 +1,106 @@
+/* packageA/pages/billDetail/index.wxss */
+page {
+  height: 100%;
+  background-color: #ffd608;
+}
+.container {
+  height: 100%;
+}
+.detail-card {
+  margin: 30rpx auto;
+
+  background-color: #fff;
+  position: relative;
+  padding: 20rpx 0;
+  margin: 40rpx;
+  border-radius: 20rpx;
+}
+
+.detail-card-top {
+  background-color: #fff;
+  padding-bottom: 10rpx;
+  text-align: center;
+  position: relative;
+}
+.detail-card-type {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #ff8794;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: -90rpx;
+  transform: translateX(-50%);
+}
+.detail-card-top-name {
+  margin-top: 40rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.detail-card-top-amount {
+  margin: 10rpx 0;
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.detail-card-bottom {
+  background-color: #fff;
+}
+
+.order-bg {
+  width: 100%;
+  height: 80rpx;
+  background-color: #ffffff;
+  border-radius: 50rpx;
+  position: relative;
+}
+.left-circle {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background-color: #ffd608;
+  position: absolute;
+  left: -25rpx;
+  z-index: 99;
+}
+
+.right-circle {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background-color: #ffd608;
+  position: absolute;
+  right: -25rpx;
+  z-index: 99;
+}
+.order-line {
+  position: absolute;
+  top: 25rpx;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    #ccc 0%,
+    #ccc 50%,
+    transparent 50%
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+.detail-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.detail-footer-left,
+.detail-footer-right {
+  padding: 10rpx;
+  border-radius: 50%;
+  background: #fff;
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+}

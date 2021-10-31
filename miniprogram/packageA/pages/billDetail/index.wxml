@@ -1,0 +1,32 @@
+<!-- packageA/pages/billDetail/index.wxml -->
+<view class="container">
+  <view class="detail-card">
+    <view class="detail-card-top">
+      <view class="detail-card-type">
+        <iconfont name="fruits" />
+      </view>
+      <view class="detail-card-top-name">水果</view>
+      <view class="detail-card-top-amount">-200.00</view>
+    </view>
+    <view class="order-bg">
+      <view class="left-circle"></view>
+      <view class="right-circle"></view>
+      <view class="order-line"></view>
+    </view>
+    <view class="detail-card-bottom">
+      <van-cell title="支付方式" value="支付宝" />
+      <van-cell title="记录日期" value="2021年10月28日 12:00" />
+      <van-cell title="消费日期" value="2021年10月27日 12:00" />
+      <van-cell title="支付类型" value="支出-水果" />
+      <van-cell title="账单备注" value="我就是买个水果，为啥呢！" border="{{false}}" />
+    </view>
+  </view>
+  <view class="detail-footer">
+    <view class="detail-footer-left">
+      <van-icon name="edit" size="40rpx" color="#FF8C08" />
+    </view>
+    <view class="detail-footer-right">
+      <van-icon name="delete-o" size="40rpx" color="#808187" />
+    </view>
+  </view>
+</view>

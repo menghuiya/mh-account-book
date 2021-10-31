@@ -37,9 +37,9 @@
                     "scene": null
                 },
                 {
-                    "name": "packageA/pages/property/index",
-                    "pathName": "packageA/pages/property/index",
-                    "query": "",
+                    "name": "packageA/pages/billDetail/index",
+                    "pathName": "packageA/pages/billDetail/index",
+                    "query": "id=1",
                     "scene": null
                 },
                 {

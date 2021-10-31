@@ -7,7 +7,7 @@
     <view class="home-head-text">本月支出</view>
     <view class="home-head-amount">
       <text class="home-head-amount-tag">￥</text>
-      <text class="property-head-amount-data">
+      <text class="home-head-amount-data">
         <text wx:if="{{showView}}">4328.36</text>
         <text wx:else>*****</text>
       </text>
@@ -35,7 +35,7 @@
   <view class="home-content">
     <van-cell title="最近账单" size="large" is-link value="全部账单" border="{{false}}" />
     <van-cell-group title="今天 2021年11月{{monthItem.date}}日" wx:for="{{monthDatas}}" wx:for-item="monthItem" wx:key="date">
-      <van-cell title="{{payTypeMap[dayItem.type].name}}" use-label-slot border="{{false}}" wx:for="{{monthItem.data}}" wx:for-item="dayItem" wx:key="id">
+      <van-cell title="{{payTypeMap[dayItem.type].name}}" use-label-slot border="{{false}}" wx:for="{{monthItem.data}}" wx:for-item="dayItem" wx:key="id" link-type="navigateTo" url="/packageA/pages/billDetail/index?id={{dayItem.id}}">
         <iconfont name="{{payTypeMap[dayItem.type].icon}}" class="mh-body-card-img" slot="icon" />
         <view class="mh-cell-label" slot="label">{{dayItem.time}} {{dayItem.des}}</view>
         <view class="mh-cell-value-{{dayItem.billType}}">
