@@ -1,0 +1,22 @@
+<!-- packageA/pages/about/index.wxml -->
+<view class="container">
+  <image class="about-logo" src="/images/logo.png" />
+  <view class="about-name">梦回小账本</view>
+  <view class="about-version">Version 1.0.1</view>
+  <view class="about-content">
+    <van-cell title="去评分" is-link size="large" custom-class="about-cell" />
+    <van-cell title="功能介绍" is-link size="large" custom-class="about-cell" />
+    <van-cell title="反馈" is-link size="large" custom-class="about-cell" />
+    <van-cell title="版本更新" is-link size="large" custom-class="about-cell" />
+  </view>
+  <view class="about-footer">
+    <view class="about-footer-agreement">《软件许可及服务协议》</view>
+    <view class="about-footer-privacy">《隐私保护指引》</view>
+    <view class="about-footer-copyright">
+      <view class="about-footer-copyright-top">腾讯公司 版权所有</view>
+      <view class="about-footer-copyright-bottom">
+        Copyright © 2021-2021 Tencent. All Rights Reserved
+      </view>
+    </view>
+  </view>
+</view>

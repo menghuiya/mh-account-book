@@ -1,34 +1,47 @@
 <!-- index.wxml -->
 <view class="container">
-  <view class="mh-title">当月预算</view>
-  <view class="mh-month-card">
-    <view class="card-left">
-      <view class="card-msg">月支出(元):</view>
-      <view class="card-data">2000.00</view>
-      <view class="card-msg card-margin-top">月收入(元)</view>
-      <view class="card-msg">10000.00</view>
+  <van-nav-bar fixed placeholder border="{{false}}" custom-class="mh-index-nav" title="账本首页" bind:click-left="onClickLeft">
+    <view class="mh-index-nav-left" slot="left">账户资产</view>
+  </van-nav-bar>
+  <view class="home-head">
+    <view class="home-head-text">本月支出</view>
+    <view class="home-head-amount">
+      <text class="home-head-amount-tag">￥</text>
+      <text class="property-head-amount-data">
+        <text wx:if="{{showView}}">4328.36</text>
+        <text wx:else>*****</text>
+      </text>
+      <van-icon name="{{showView?'/images/icons/close.png':'/images/icons/open.png'}}" bind:tap="changeView" />
     </view>
-    <view class="card-center">
-      <view class="card-msg">预算剩余(元):</view>
-      <view class="card-data">8000.00</view>
-      <view class="card-msg card-margin-top">总预算(元)</view>
-      <view class="card-msg">10000.00</view>
-    </view>
-    <view class="card-right">
-      <view class="card-right-btn">查看预算</view>
-    </view>
-  </view>
-  <view class="mh-title">每日记录</view>
-  <van-cell-group custom-class="mh-group" wx:for="{{monthDatas}}" wx:for-item="item" wx:key="date">
-    <view class="mh-group-title">
-      <view class="mh-group-title-date">{{item.date}}日</view>
-      <view class="mh-group-title-count">
-        <text class="mh-group-title-count-des">支出(元)：</text>
-        <text class="mh-group-title-count-data">{{item.pay}}</text>
-        <text class="mh-group-title-count-des">收入(元)：</text>
-        <text class="mh-group-title-count-data">{{item.income}}</text>
+    <view class="home-head-info">
+      <view class="home-head-info-left">
+        <view class="home-head-text">本月收入</view>
+        <view class="home-head-info-data">
+          <text class="hinfo-data-tag">￥</text>
+          <text class="info-data-text" wx:if="{{showView}}">4328.63</text>
+          <text class="info-data-text" wx:else>*****</text>
+        </view>
+      </view>
+      <view class="home-head-info-right">
+        <view class="home-head-text">剩余预算</view>
+        <view class="home-head-info-data">
+          <text class="hinfo-data-tag">￥</text>
+          <text class="info-data-text" wx:if="{{showView}}">4328.63</text>
+          <text class="info-data-text" wx:else>*****</text>
+        </view>
       </view>
     </view>
-    <van-cell icon="shopping-cart" title="{{dayItem.type}}" value="{{dayItem.amount}}" label="{{dayItem.time+dayItem.des}}" wx:for="{{item.data}}" wx:for-item="dayItem" wx:for-index="index" wx:key="id" />
-  </van-cell-group>
+  </view>
+  <view class="home-content">
+    <van-cell title="最近账单" size="large" is-link value="全部账单" border="{{false}}" />
+    <van-cell-group title="今天 2021年11月{{monthItem.date}}日" wx:for="{{monthDatas}}" wx:for-item="monthItem" wx:key="date">
+      <van-cell title="{{payTypeMap[dayItem.type].name}}" use-label-slot border="{{false}}" wx:for="{{monthItem.data}}" wx:for-item="dayItem" wx:key="id">
+        <iconfont name="{{payTypeMap[dayItem.type].icon}}" class="mh-body-card-img" slot="icon" />
+        <view class="mh-cell-label" slot="label">{{dayItem.time}} {{dayItem.des}}</view>
+        <view class="mh-cell-value-{{dayItem.billType}}">
+          {{dayItem.billType==='pay'?'-':'+'}}￥{{dayItem.amount}}
+        </view>
+      </van-cell>
+    </van-cell-group>
+  </view>
 </view>

@@ -55,4 +55,9 @@ Page({
       url: `/packageA/pages/userInfo/index`,
     });
   },
+  goAbout() {
+    wx.navigateTo({
+      url: `/packageA/pages/about/index`,
+    });
+  },
 });

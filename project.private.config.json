@@ -19,8 +19,8 @@
                     "query": ""
                 },
                 {
-                    "name": "pages/count/index",
-                    "pathName": "pages/count/index",
+                    "name": "pages/index/index",
+                    "pathName": "pages/index/index",
                     "query": "",
                     "scene": null
                 },
@@ -31,20 +31,20 @@
                     "scene": null
                 },
                 {
-                    "name": "packageA/pages/userInfo/index",
-                    "pathName": "packageA/pages/userInfo/index",
+                    "name": "packageA/pages/userPhone/index",
+                    "pathName": "packageA/pages/userPhone/index",
                     "query": "",
                     "scene": null
                 },
                 {
-                    "name": "pages/sumRecordResult/index",
-                    "pathName": "pages/sumRecordResult/index",
+                    "name": "packageA/pages/property/index",
+                    "pathName": "packageA/pages/property/index",
                     "query": "",
                     "scene": null
                 },
                 {
                     "name": "pages/updateRecord/index",
-                    "pathName": "pages/updateRecord/index",
+                    "pathName": "packageA/pages/about/index",
                     "query": "",
                     "scene": null
                 },

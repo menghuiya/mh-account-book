@@ -40,6 +40,6 @@
     <van-cell title="房贷计算器" icon="wap-home-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
     <van-cell title="客服中心" icon="smile-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
     <van-cell title="分享" icon="share-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
-    <van-cell title="关于" icon="info-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+    <van-cell title="关于" icon="info-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" bind:tap="goAbout" />
   </view>
 </view>

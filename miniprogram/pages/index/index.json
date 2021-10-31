@@ -1,5 +1,10 @@
 {
-  "navigationBarTitleText": "首页",
-  "navigationBarBackgroundColor": "#fff",
-  "usingComponents": {}
+  "navigationBarTitleText": "小账本",
+  "navigationBarBackgroundColor": "#FFD608",
+  "usingComponents": {
+    "van-nav-bar": "@vant/weapp/nav-bar/index",
+    "van-cell-group": "@vant/weapp/cell-group/index"
+  },
+  "navigationStyle": "custom",
+  "backgroundColor": "#FFD608"
 }

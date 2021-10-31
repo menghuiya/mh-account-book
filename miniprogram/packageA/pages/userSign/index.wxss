@@ -1,0 +1,11 @@
+/* packageA/pages/userSign/index.wxss */
+.mh-phone-btn {
+  margin: 80rpx 70rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.mh-phone-btn-text {
+  font-weight: 600;
+  color: #000;
+}

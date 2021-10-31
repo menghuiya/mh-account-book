@@ -11,14 +11,11 @@
       <van-cell title="手机号" value="{{userInfo.phone}}" is-link data-type="phone" bind:click="openChangeData" />
       <van-cell title="邮箱" value="{{userInfo.emial}}" is-link data-type="emial" bind:click="openChangeData" />
       <van-cell title="职业" value="{{userInfo.profession}}" is-link label="此处仅仅是大类" bind:click="showProfession" />
-      <van-cell title="签名" value="{{userInfo.sign}}" data-type="sign" label="签名省略的其余部分签名省略的其余部分" is-link border="{{ false }}" bind:click="openChangeData" />
+      <van-cell title="签名" value="{{userInfo.sign}}" data-type="sign" is-link border="{{ false }}" bind:click="openChangeData" />
     </van-cell-group>
   </view>
 </view>
 <van-toast id="van-toast" />
-<van-popup show="{{ show }}" bind:close="closeProfession" custom-style="height: 40%;width:90%;background-color: #f6f6f6;padding:20rpx;">
-  <van-field value="{{ value }}" placeholder="请输入手机号" border="{{ false }}" bind:change="onChange" />
-</van-popup>
 <van-popup show="{{ showProfession }}" bind:close="closeProfession" position="bottom">
   <van-picker show-toolbar title="请选择你的职业" columns="{{ occupations }}" bind:cancel="closeProfession" bind:confirm="onConfirm" />
 </van-popup>

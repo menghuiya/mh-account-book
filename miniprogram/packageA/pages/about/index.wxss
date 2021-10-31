@@ -1,0 +1,55 @@
+/* packageA/pages/about/index.wxss */
+
+page {
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.about-logo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 10rpx;
+  margin: auto;
+  margin-top: 100rpx;
+}
+
+.about-name {
+  margin: auto;
+  margin-top: 40rpx;
+  font-weight: 600;
+  font-size: 36rpx;
+}
+
+.about-version {
+  margin: 20rpx auto;
+  font-size: 30rpx;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-cell {
+  background: transparent !important;
+}
+
+.about-footer {
+  text-align: center;
+  font-size: 24rpx;
+  padding-bottom: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
+  padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
+}
+.about-footer-agreement,
+.about-footer-privacy {
+  color: #5e6c86;
+  margin: 10rpx 0;
+}
+
+.about-footer-copyright {
+  margin: 40rpx 0;
+  color: #b0b0b0;
+}

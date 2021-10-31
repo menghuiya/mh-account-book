@@ -22,6 +22,7 @@ Page({
       },
     ],
     changeType: "", //phone 手机，emial 邮箱，sign 签名
+    changeValue: "",
     userInfo: {
       sex: "保密",
       id: 123456789,
@@ -31,7 +32,7 @@ Page({
       sign: "一条简单签名",
     }, //可以提交的
   },
-  onLoad() {
+  onShow() {
     const tempUserInfo = wx.getStorageSync("userInfo");
     if (tempUserInfo) {
       this.setData({
@@ -56,9 +57,14 @@ Page({
     const { picker, value, index } = event.detail;
     // Toast(`当前值：${value}, 当前索引：${index}`);
     const temppro = "userInfo.profession";
+    const userData = wx.getStorageSync("userInfo");
     this.setData({
       [temppro]: value,
     });
+    wx.setStorageSync(
+      "userInfo",
+      Object.assign(userData, { profession: value })
+    );
     this.closeProfession();
   },
   showSex() {
@@ -67,17 +73,33 @@ Page({
     });
   },
   selectSex(e) {
+    const userData = wx.getStorageSync("userInfo");
     const { name } = e.detail;
     const tempsex = "userInfo.sex";
     this.setData({
       [tempsex]: name,
     });
+    wx.setStorageSync("userInfo", Object.assign(userData, { sex: name }));
     this.closeProfession();
   },
   openChangeData(e) {
-    this.setData({
-      changeType: e.type,
-      show: true,
-    });
+    const tempType = e.currentTarget.dataset.type;
+    switch (tempType) {
+      case "phone":
+        wx.navigateTo({
+          url: `/packageA/pages/userPhone/index`,
+        });
+        break;
+      case "emial":
+        wx.navigateTo({
+          url: `/packageA/pages/userEmial/index`,
+        });
+        break;
+      case "sign":
+        wx.navigateTo({
+          url: `/packageA/pages/userSign/index`,
+        });
+        break;
+    }
   },
 });

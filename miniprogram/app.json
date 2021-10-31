@@ -9,7 +9,15 @@
     {
       "root": "packageA",
       "name": "packageA",
-      "pages": ["pages/userInfo/index", "pages/uploadFile/index"]
+      "pages": [
+        "pages/userInfo/index",
+        "pages/uploadFile/index",
+        "pages/userPhone/index",
+        "pages/userEmial/index",
+        "pages/userSign/index",
+        "pages/about/index",
+        "pages/property/index"
+      ]
     }
   ],
   "tabBar": {

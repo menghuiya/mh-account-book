@@ -1,86 +1,77 @@
 /**index.wxss**/
 
 page {
-  background-color: #f6f6f6;
+  background-color: #ffd608;
+  height: 100%;
 }
-.mh-nav-active {
-  font-weight: 600 !important;
+.mh-index-nav {
+  background-color: #ffd608 !important;
 }
+.mh-index-nav .van-nav-bar__text {
+  color: #000;
+}
+
 .container {
-  padding: 20rpx;
-}
-
-.mh-title {
-  font-size: 32rpx;
-  font-weight: 600;
-}
-.mh-month-card {
-  background: linear-gradient(to right, #43a1fc, #74b1c7);
-  border-radius: 20rpx;
-  padding: 20rpx 0;
-  margin: 20rpx;
-  color: #ffffff;
   display: flex;
-  font-size: 32rpx;
+  flex-direction: column;
+  height: 100%;
 }
-.mh-month-card .card-left {
-  padding: 0 40rpx;
-  border-right: 1rpx solid #66b6f1;
+
+.home-head {
+  padding: 30rpx 20rpx;
 }
-.card-msg {
+
+.home-head-text {
   font-size: 24rpx;
-  color: #bcddfd;
-}
-.card-data {
-  font-size: 38rpx;
-  transform: scaleY(1.2);
-}
-.mh-month-card .card-center {
-  padding: 0 40rpx;
 }
 
-.card-margin-top {
-  margin-top: 10rpx;
+.home-head-amount {
+  font-weight: 600;
+  font-size: 46rpx;
+  padding: 20rpx 0;
 }
 
-.mh-month-card .card-right {
-  flex: 1;
-  text-align: right;
-  padding: 0 20rpx;
-}
-.card-right-btn {
-  font-size: 24rpx;
-  padding: 6rpx 12rpx;
-  border: 1px solid #84c3f0;
-  display: inline-block;
-  border-radius: 999rpx;
+.home-head-amount-data {
+  margin-right: 30rpx;
 }
 
-.mh-group {
-  border-radius: 20rpx !important;
-  overflow: hidden;
-  background: #fff;
+.home-head-info {
+  display: flex;
   margin-top: 20rpx;
 }
 
-.mh-group-title {
-  display: flex;
-  font-size: 22rpx;
-  justify-content: space-between;
-  padding: 0 30rpx;
-  padding-top: 20rpx;
-  align-items: center;
+.home-head-info-left,
+.home-head-info-right {
+  flex: 1;
 }
-.mh-group-title-date {
+
+.home-head-info-data {
   font-weight: 600;
-  font-size: 24rpx;
+  margin: 10rpx 0;
 }
 
-.mh-group-title-count-des {
-  color: #c0c4cc;
-  margin-left: 10rpx;
+.home-content {
+  flex: 1;
+  background-color: #fff;
 }
 
-.mh-group-title-count-data {
-  color: #606266;
+.mh-body-card-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.mh-cell-label {
+  width: 400rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mh-cell-value-pay {
+  color: #808187;
+  font-weight: 600;
+}
+.mh-cell-value-income {
+  color: #ff8c08;
+  font-weight: 600;
 }

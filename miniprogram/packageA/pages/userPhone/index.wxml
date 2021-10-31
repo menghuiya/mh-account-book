@@ -1,0 +1,10 @@
+<!-- packageA/pages/userPhone/index.wxml -->
+<view class="container">
+  <van-field model:value="{{ phone }}" type="number" clearable placeholder="请输入手机号码" border="{{ false }}" />
+  <view class="mh-phone-btn">
+    <van-button color="#FFD608" type="primary" block bind:tap="onHandleSave">
+      <text class="mh-phone-btn-text">保存</text>
+    </van-button>
+  </view>
+</view>
+<van-toast id="van-toast" />

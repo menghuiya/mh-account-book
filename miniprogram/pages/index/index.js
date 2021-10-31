@@ -1,12 +1,11 @@
 // index.js
 // const app = getApp()
 const { envList } = require("../../envList.js");
-
+const { payTypeMap } = require("../../utils/mokeData");
 Page({
   data: {
-    envList,
-    selectedEnv: envList[0],
-    haveCreateCollection: false,
+    payTypeMap: payTypeMap,
+    showView: true,
     monthDatas: [
       {
         date: "29",
@@ -14,32 +13,44 @@ Page({
         income: 0,
         data: [
           {
-            type: "电子产品",
+            type: "digital",
             amount: 8000,
             time: "22:55",
             des: "买了一台电脑",
-            id: 1,
+            id: 0,
+            billType: "pay",
           },
           {
-            type: "服饰",
+            type: "jijin",
+            amount: 12.62,
+            time: "22:55",
+            des: "基金收入",
+            id: 1,
+            billType: "income",
+          },
+          {
+            type: "clothingShoe",
             amount: 1000,
             time: "22:55",
-            des: "去春熙路买了一件衣服",
+            des: "去春熙路买了一件衣服,感觉还不错呀哈哈哈哈",
             id: 2,
+            billType: "pay",
           },
           {
-            type: "奶茶",
+            type: "drink",
             amount: 25,
             time: "22:55",
             des: "点了一杯奶茶",
             id: 3,
+            billType: "pay",
           },
           {
-            type: "午餐",
+            type: "eat",
             amount: 20,
             time: "22:55",
             des: "吃了午餐",
             id: 4,
+            billType: "pay",
           },
         ],
       },
@@ -49,78 +60,45 @@ Page({
         income: 0,
         data: [
           {
-            type: "电子产品",
+            type: "digital",
             amount: 5999,
             time: "22:55",
             des: "买了一个iPhone13",
             id: 5,
+            billType: "pay",
           },
           {
-            type: "服饰",
+            type: "clothingShoe",
             amount: 1000,
             time: "22:55",
             des: "淘宝上买了衣服",
             id: 6,
+            billType: "pay",
           },
           {
-            type: "奶茶",
+            type: "drink",
             amount: 25,
             time: "22:55",
             des: "饿了吗点了奶茶",
             id: 7,
+            billType: "pay",
           },
           {
-            type: "午餐",
+            type: "eat",
             amount: 20,
             time: "22:55",
             des: "吃了午餐",
             id: 8,
+            billType: "pay",
           },
         ],
       },
     ],
   },
 
-  onClickPowerInfo(e) {
-    const index = e.currentTarget.dataset.index;
-    const powerList = this.data.powerList;
-    powerList[index].showItem = !powerList[index].showItem;
-    if (
-      powerList[index].title === "数据库" &&
-      !this.data.haveCreateCollection
-    ) {
-      this.onClickDatabase(powerList);
-    } else {
-      this.setData({
-        powerList,
-      });
-    }
-  },
-
-  onChangeShowEnvChoose() {
-    wx.showActionSheet({
-      itemList: this.data.envList.map((i) => i.alias),
-      success: (res) => {
-        this.onChangeSelectedEnv(res.tapIndex);
-      },
-      fail(res) {
-        console.log(res.errMsg);
-      },
-    });
-  },
-
-  onChangeSelectedEnv(index) {
-    if (this.data.selectedEnv.envId === this.data.envList[index].envId) {
-      return;
-    }
-    const powerList = this.data.powerList;
-    powerList.forEach((i) => {
-      i.showItem = false;
-    });
-    this.setData({
-      selectedEnv: this.data.envList[index],
-      powerList,
-      haveCreateCollection: false,
+  onClickLeft() {
+    wx.navigateTo({
+      url: "/packageA/pages/property/index",
     });
   },
 
@@ -170,5 +148,14 @@ Page({
     //   activeMonth: date.getMonth() + 1,
     //   nowYear: date.getFullYear(),
     // });
+    wx.showShareMenu({
+      withShareTicket: true,
+      menus: ["shareAppMessage", "shareTimeline"],
+    });
+  },
+  changeView() {
+    this.setData({
+      showView: !this.data.showView,
+    });
   },
 });
