@@ -1,5 +1,45 @@
-<!--index.wxml-->
+<!-- index.wxml -->
 <view class="container">
-  统计
-
+  <view class="user-head" bind:tap="getUserBaseInfo">
+    <view class="user-head-left">
+      <image src="{{isLogin?userInfo.avatarUrl:'/images/icons/default-user.png'}}" class="user-head-left-img" />
+      <image src="{{userInfo.gender===0?'/images/icons/boy.png':'/images/icons/girl.png'}}" class="user-head-left-tag" wx:if="{{isLogin}}" />
+      <!-- <view class="user-head-left-tag">♀</view> -->
+    </view>
+    <view class="user-head-center">
+      <view class="user-head-center-login" wx:if="{{isLogin}}">
+        <view class="user-head-center-top">{{userInfo.nickName}}</view>
+        <view class="user-head-center-bottom">我就是简单的呀</view>
+      </view>
+      <view class="user-head-center-nologin" wx:else>登录 / 注册</view>
+    </view>
+    <view class="user-head-right">
+      <van-icon name="arrow" />
+    </view>
+  </view>
+  <view class="user-body">
+    <view class="user-body-data">
+      <view class="user-body-data-item">
+        <image src="/images/icons/rili.png" />
+        <text class="data-item-info">30</text>
+        <text>连续记录(天)</text>
+      </view>
+      <view class="user-body-data-item">
+        <image src="/images/icons/shichang.png" />
+        <text class="data-item-info">365</text>
+        <text>记账时长(天)</text>
+      </view>
+      <view class="user-body-data-item">
+        <image src="/images/icons/shuliang.png" />
+        <text class="data-item-info">9999</text>
+        <text>账目数量(笔)</text>
+      </view>
+    </view>
+    <image src="/images/userTui.png" class="user-head-recomimg" />
+    <van-cell title="汇率换算" icon="after-sale" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+    <van-cell title="房贷计算器" icon="wap-home-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+    <van-cell title="客服中心" icon="smile-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+    <van-cell title="分享" icon="share-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+    <van-cell title="关于" icon="info-o" border="{{ false }}" is-link custom-class="mh-cell" title-class="mh-cell-title" />
+  </view>
 </view>

@@ -5,6 +5,13 @@
     "pages/user/index",
     "pages/uploadFile/index"
   ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "name": "packageA",
+      "pages": ["pages/userInfo/index", "pages/uploadFile/index"]
+    }
+  ],
   "tabBar": {
     "color": "#D5D6D7",
     "selectedColor": "#FFB92C",
@@ -42,6 +49,7 @@
     "van-button": "@vant/weapp/button/index",
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
-    "iconfont": "/iconfont/iconfont"
+    "iconfont": "/iconfont/iconfont",
+    "van-icon": "@vant/weapp/icon/index"
   }
 }
