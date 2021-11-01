@@ -98,7 +98,7 @@ page {
 .mortgage-content {
   flex: 1;
   background-color: #f6f6f6;
-  padding-top: 130rpx;
+  padding-top: 200rpx;
 }
 
 .mortgage-content-form {
@@ -108,4 +108,41 @@ page {
   border-radius: 20rpx;
   padding: 20rpx;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.mortgage-content-tps {
+  font-size: 26rpx;
+  padding: 20rpx;
+  text-align: center;
+  color: #1eb5fe;
+}
+
+.mortgage-content-data {
+  margin: 20rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.mortgage-content-data-head {
+  padding: 20rpx;
+  background-color: #f5db5b;
+  color: #ff8800;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.data-text {
+  flex: 1;
+  font-size: 32rpx;
+}
+
+.mortgage-content-data-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  padding: 20rpx;
 }

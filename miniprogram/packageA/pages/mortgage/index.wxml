@@ -25,12 +25,32 @@
   <view class="mortgage-content">
     <!-- <view class="mortgage-content-form"></view> -->
     <van-cell-group inset>
-      <van-cell title="贷款方式" is-link value="商业贷款" />
-      <van-cell title="房产总价" value="请输入房价" />
-      <van-cell title="首付比例" is-link value="3成" />
-      <van-cell title="需要贷款金额" value="根据比例自动计算" />
-      <van-cell title="利率" is-link value="4.90%(最新)利率" />
-      <van-cell title="期限" is-link value="30年" />
+      <van-cell title="贷款方式" is-link value="商业贷款" size="large" />
+      <van-cell title="房产总价" value="请输入房价" size="large" />
+      <van-cell title="首付比例" is-link value="3成" size="large" />
+      <van-cell title="需要贷款金额" value="根据比例自动计算" size="large" />
+      <van-cell title="利率" is-link value="4.90%(最新)利率" size="large" />
+      <van-cell title="期限" is-link value="30年" size="large" />
     </van-cell-group>
+    <view class="mortgage-content-tps">
+      查看等额本金还款详情
+      <van-icon name="arrow-down" />
+    </view>
+    <view class="mortgage-content-data">
+      <view class="mortgage-content-data-head">
+        <text class="data-text">月份</text>
+        <text class="data-text">月供金额</text>
+        <text class="data-text">剩余本金</text>
+        <text class="data-text">剩余总额</text>
+      </view>
+      <view class="mortgage-content-data-body">
+        <view class="mortgage-content-data-item" wx:for="{{dataList}}" wx:for-item="item" wx:key="month">
+          <text class="data-text">{{item.month}}</text>
+          <text class="data-text">{{item.monthAmount}}</text>
+          <text class="data-text">{{item.reAmount}}</text>
+          <text class="data-text">{{item.reTotal}}</text>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
