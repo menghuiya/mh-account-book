@@ -1,0 +1,36 @@
+<!-- packageA/pages/mortgage/index.wxml -->
+<view class="mortgage">
+  <view class="mortgage-head">
+    <view class="mortgage-head-nav">
+      <view class="mortgage-head-nav-left mortgage-head-nav-active">等额本息</view>
+      <view class="mortgage-head-nav-right">等额本金</view>
+    </view>
+    <view class="mortgage-head-amount">
+      <view class="mortgage-head-amount-top">月供(元)</view>
+      <view class="mortgage-head-amount-body">￥2389.00</view>
+    </view>
+  </view>
+  <view class="mortgage-center">
+    <view class="mortgage-center-card">
+      <view class="mortgage-center-card-left">
+        <view class="mortgage-center-card-text">支付利息(元)</view>
+        <view class="mortgage-center-card-data">￥450729.19</view>
+      </view>
+      <view class="mortgage-center-card-right">
+        <view class="mortgage-center-card-text">还款总额(元)</view>
+        <view class="mortgage-center-card-data">￥1010725.19</view>
+      </view>
+    </view>
+  </view>
+  <view class="mortgage-content">
+    <!-- <view class="mortgage-content-form"></view> -->
+    <van-cell-group inset>
+      <van-cell title="贷款方式" is-link value="商业贷款" />
+      <van-cell title="房产总价" value="请输入房价" />
+      <van-cell title="首付比例" is-link value="3成" />
+      <van-cell title="需要贷款金额" value="根据比例自动计算" />
+      <van-cell title="利率" is-link value="4.90%(最新)利率" />
+      <van-cell title="期限" is-link value="30年" />
+    </van-cell-group>
+  </view>
+</view>

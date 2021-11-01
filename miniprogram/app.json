@@ -17,7 +17,8 @@
         "pages/userSign/index",
         "pages/about/index",
         "pages/property/index",
-        "pages/billDetail/index"
+        "pages/billDetail/index",
+        "pages/mortgage/index"
       ]
     }
   ],
