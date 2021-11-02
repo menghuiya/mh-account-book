@@ -13,6 +13,32 @@ Page({
       { month: 6, monthAmount: 7166.93, reAmount: 8166.66, reTotal: 21825.47 },
       { month: 7, monthAmount: 7166.93, reAmount: 8166.66, reTotal: 21825.47 },
     ],
+    loanTypes: [
+      { id: 1, name: "商业贷款", des: "xxx" },
+      { id: 2, name: "公积金贷款", des: "xxx" },
+      { id: 3, name: "组合型贷款", des: "xxx" },
+    ],
+    payments: [
+      { name: "2成", id: "2" },
+      { name: "3成", id: "3" },
+      { name: "4成", id: "4" },
+      { name: "5成", id: "5" },
+      { name: "6成", id: "6" },
+      { name: "7成", id: "7" },
+      { name: "8成", id: "8" },
+      { name: "9成", id: "9" },
+    ],
+
+    loanShow: false,
+    paymentShow: false,
+    repaymentType: "equalInterest", //equalInterest 等额本息 equalPrincipal 等额本金
+    loanType: 1, //1 商业贷款 2 公积金贷款 3 组合型贷款
+    loanTypeStr: "商业贷款", //1 商业贷款 2 公积金贷款 3 组合型贷款
+    totalAmount: "",
+    payment: "7", // 首付比例
+    paymentStr: "7成", // 首付比例
+    payItem: 20, //期限
+    loanAmount: "根据比例自动计算",
   },
 
   /**
@@ -20,38 +46,53 @@ Page({
    */
   onLoad: function (options) {},
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {},
+  handleNavClick(e) {
+    const type = e.currentTarget.dataset.code;
+    this.setData({
+      repaymentType: type,
+    });
+  },
+  openLoan() {
+    this.setData({ loanShow: true });
+  },
+  onLoanClose() {
+    this.setData({ loanShow: false });
+  },
+  onLoanSelect(event) {
+    const { id, name } = event.detail;
+    this.setData({
+      loanType: id,
+      loanTypeStr: name,
+    });
+    console.log(this.data.payItem);
+  },
+  openPayment() {
+    this.setData({ paymentShow: true });
+  },
+  onPaymentClose() {
+    this.setData({ paymentShow: false });
+  },
+  onPaymentSelect(event) {
+    const { id, name } = event.detail;
+    this.setData({
+      payment: id,
+      paymentStr: name,
+    });
+  },
+  onChange(value) {
+    this.setData({ payItem: value.detail });
+  },
+  handleBlur(event) {
+    const { value } = event.detail;
+    let tempAmount = (this.data.payment * value) / 10;
+    if (value) {
+      this.setData({
+        loanAmount: tempAmount + "元",
+      });
+    } else {
+      this.setData({
+        loanAmount: "根据比例自动计算",
+      });
+    }
+  },
 });
