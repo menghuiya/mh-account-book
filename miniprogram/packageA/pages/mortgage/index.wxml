@@ -2,8 +2,12 @@
 <view class="mortgage">
   <view class="mortgage-head">
     <view class="mortgage-head-nav">
-      <view class="mortgage-head-nav-left mortgage-head-nav-active">等额本息</view>
-      <view class="mortgage-head-nav-right">等额本金</view>
+      <view class="mortgage-head-nav-left {{repaymentType==='equalInterest'?'mortgage-head-nav-active':''}}" data-code="equalInterest" bind:tap="handleNavClick">
+        等额本息
+      </view>
+      <view class="mortgage-head-nav-right {{repaymentType==='equalPrincipal'?'mortgage-head-nav-active':''}}" data-code="equalPrincipal" bind:tap="handleNavClick">
+        等额本金
+      </view>
     </view>
     <view class="mortgage-head-amount">
       <view class="mortgage-head-amount-top">月供(元)</view>
@@ -25,12 +29,16 @@
   <view class="mortgage-content">
     <!-- <view class="mortgage-content-form"></view> -->
     <van-cell-group inset>
-      <van-cell title="贷款方式" is-link value="商业贷款" size="large" />
-      <van-cell title="房产总价" value="请输入房价" size="large" />
-      <van-cell title="首付比例" is-link value="3成" size="large" />
-      <van-cell title="需要贷款金额" value="根据比例自动计算" size="large" />
+      <van-cell title="贷款方式" is-link value="{{loanTypeStr}}" size="large" bind:tap="openLoan" />
+      <!-- <van-cell title="房产总价" value="请输入房价" size="large" /> -->
+      <van-field label="房产总价" is-link model:value="{{ totalAmount }}" size="large" input-align="right" placeholder="请输入房价" bind:blur="handleBlur" />
+      <van-cell title="首付比例" is-link value="{{paymentStr}}" size="large" bind:tap="openPayment" />
+      <van-cell title="需要贷款金额" value="{{loanAmount}}" size="large" />
       <van-cell title="利率" is-link value="4.90%(最新)利率" size="large" />
-      <van-cell title="期限" is-link value="30年" size="large" />
+      <!-- <van-cell title="期限" is-link value="30年" size="large" bind:tap="openItem" /> -->
+      <van-cell title="期限" size="large">
+        <van-stepper value="{{ payItem }}" min="1" max="30" bind:change="onChange" />
+      </van-cell>
     </van-cell-group>
     <view class="mortgage-content-tps">
       查看等额本金还款详情
@@ -54,3 +62,5 @@
     </view>
   </view>
 </view>
+<van-action-sheet show="{{ loanShow }}" actions="{{ loanTypes }}" bind:close="onLoanClose" bind:select="onLoanSelect" />
+<van-action-sheet show="{{ paymentShow }}" actions="{{ payments }}" bind:close="onPaymentClose" bind:select="onPaymentSelect" />
