@@ -18,7 +18,8 @@
         "pages/about/index",
         "pages/property/index",
         "pages/billDetail/index",
-        "pages/mortgage/index"
+        "pages/mortgage/index",
+        "pages/allBills/index"
       ]
     }
   ],

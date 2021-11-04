@@ -1,0 +1,35 @@
+<!-- packageA/pages/allBills/index.wxml -->
+<view class="container">
+  <view class="allBills-head">
+    <view class="allBills-head-left">
+      <text class="allBills-head-left-text">2021</text>
+      <van-icon name="arrow-down" color="#C5C6CA" />
+    </view>
+    <view class="allBills-head-right">
+      <view class="allBills-head-right-item {{activeMonth===item.month?'right-item-active':''}}" wx:for="{{monthData}}" wx:for-item="item" wx:key="id" data-month="{{item.month}}" bind:tap="monthClick">
+        {{item.month}}月
+      </view>
+    </view>
+  </view>
+  <view class="allBills-body">
+    <view class="allBills-body-tps">总支出</view>
+    <view class="allBills-body-total">￥23423.89</view>
+    <view class="allBills-body-cate" wx:for="{{cateData}}" wx:for-item="item" wx:key="id">
+      <view class="allBills-body-cate-left">
+        <view class="cate-top">
+          <view class="cate-top-left">
+            <text class="cate-top-left-name">{{item.name}}</text>
+            <text class="cate-top-left-rate">{{item.rate}}%</text>
+          </view>
+          <view class="cate-top-right">￥{{item.amount}}</view>
+        </view>
+        <view class="cate-bottom">
+          <van-progress show-pivot="{{false}}" color="{{item.color}}" percentage="{{item.rate}}" />
+        </view>
+      </view>
+      <view class="allBills-body-cate-right">
+        <van-icon name="arrow" color="#C5C6CA" />
+      </view>
+    </view>
+  </view>
+</view>

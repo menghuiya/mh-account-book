@@ -1,0 +1,90 @@
+/* packageA/pages/allBills/index.wxss */
+
+page {
+  background: #fff;
+}
+.allBills-head {
+  padding: 20rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.allBills-head-left {
+  display: flex;
+  align-items: center;
+  margin-right: 10rpx;
+}
+.allBills-head-left-text {
+  margin-right: 10rpx;
+}
+
+.allBills-head-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  padding: 20rpx 0;
+}
+
+.allBills-head-right-item {
+  white-space: nowrap;
+  padding: 0 20rpx;
+  color: #c5c6ca;
+}
+
+.right-item-active {
+  color: #ffd608;
+  font-weight: 600;
+}
+
+.allBills-body {
+  padding: 20rpx;
+}
+.allBills-body-tps {
+  font-size: 24rpx;
+}
+
+.allBills-body-total {
+  font-size: 50rpx;
+  padding: 20rpx 0;
+  font-weight: 600;
+}
+
+.allBills-body-cate {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.allBills-body-cate-left {
+  flex: 1;
+  margin-right: 10rpx;
+}
+
+.cate-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  padding: 10rpx 0;
+}
+.cate-top-left-name {
+  /* font-weight: 600; */
+}
+.cate-top-left-rate {
+  font-size: 26rpx;
+  color: #c5c6ca;
+  margin-left: 20rpx;
+}
+
+.cate-bottom {
+  padding: 10rpx 0;
+}
+
+.cate-top-right {
+  font-weight: 600;
+}
+
+.allBills-body-cate-right {
+  padding: 10rpx;
+}
