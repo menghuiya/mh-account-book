@@ -28,9 +28,10 @@ Page({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"],
     });
+    this.getData();
   },
   onShow() {
-    this.getData();
+    // this.getData();
   },
   getData() {
     const openid = wx.getStorageSync("openid");
@@ -47,8 +48,9 @@ Page({
     const year = nowDate.getFullYear();
     const month = nowDate.getMonth() + 1;
     const day = nowDate.getDate();
-    const monthStart = Date.parse(`${year}-${month}-01 00:00:00`);
-    const monthEnd = Date.parse(`${year}-${month + 1}-01 00:00:00`);
+    console.log(`${year}-${month}-01 00:00:00`);
+    const monthStart = Date.parse(`${year}/${month}/01 00:00:00`);
+    const monthEnd = Date.parse(`${year}/${month + 1}/01 00:00:00`);
     wx.cloud
       .callFunction({
         name: "quickstartFunctions",

@@ -37,3 +37,6 @@
     <day-pay-data payDatas="{{monthDatas}}"></day-pay-data>
   </view>
 </view>
+<view class="index-refresh" bind:tap="getData">
+  <van-icon name="replay" />
+</view>

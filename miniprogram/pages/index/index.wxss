@@ -78,3 +78,18 @@ page {
   color: #ff8c08;
   font-weight: 600;
 }
+
+.index-refresh {
+  position: fixed;
+  right: 30rpx;
+  bottom: 60rpx;
+  background: #29262659;
+  width: 60rpx;
+  height: 60rpx;
+  font-size: 36rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-weight: 600;
+  border-radius: 50%;
+  color: #ffd608;
+}
