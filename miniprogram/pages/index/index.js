@@ -1,98 +1,14 @@
 // index.js
 // const app = getApp()
+const { envList } = require("../../envList.js");
 const { payTypeMap } = require("../../utils/mokeData");
+const formDate = require("../../utils/formatDate");
 Page({
   data: {
+    selectedEnv: envList[0],
     payTypeMap: payTypeMap,
     showView: true,
-    monthDatas: [
-      {
-        date: "29",
-        pay: 20000,
-        income: 0,
-        data: [
-          {
-            type: "digital",
-            amount: 8000,
-            time: "22:55",
-            des: "买了一台电脑",
-            id: 0,
-            billType: "pay",
-          },
-          {
-            type: "jijin",
-            amount: 12.62,
-            time: "22:55",
-            des: "基金收入",
-            id: 1,
-            billType: "income",
-          },
-          {
-            type: "clothingShoe",
-            amount: 1000,
-            time: "22:55",
-            des: "去春熙路买了一件衣服,感觉还不错呀哈哈哈哈",
-            id: 2,
-            billType: "pay",
-          },
-          {
-            type: "drink",
-            amount: 25,
-            time: "22:55",
-            des: "点了一杯奶茶",
-            id: 3,
-            billType: "pay",
-          },
-          {
-            type: "eat",
-            amount: 20,
-            time: "22:55",
-            des: "吃了午餐",
-            id: 4,
-            billType: "pay",
-          },
-        ],
-      },
-      {
-        date: "28",
-        pay: 20000,
-        income: 0,
-        data: [
-          {
-            type: "digital",
-            amount: 5999,
-            time: "22:55",
-            des: "买了一个iPhone13",
-            id: 5,
-            billType: "pay",
-          },
-          {
-            type: "clothingShoe",
-            amount: 1000,
-            time: "22:55",
-            des: "淘宝上买了衣服",
-            id: 6,
-            billType: "pay",
-          },
-          {
-            type: "drink",
-            amount: 25,
-            time: "22:55",
-            des: "饿了吗点了奶茶",
-            id: 7,
-            billType: "pay",
-          },
-          {
-            type: "eat",
-            amount: 20,
-            time: "22:55",
-            des: "吃了午餐",
-            id: 8,
-            billType: "pay",
-          },
-        ],
-      },
-    ],
+    monthDatas: [],
   },
 
   onClickLeft() {
@@ -108,15 +24,105 @@ Page({
   },
 
   onLoad() {
-    // const date = new Date();
-    // this.setData({
-    //   //通过setData来修改
-    //   activeMonth: date.getMonth() + 1,
-    //   nowYear: date.getFullYear(),
-    // });
     wx.showShareMenu({
       withShareTicket: true,
       menus: ["shareAppMessage", "shareTimeline"],
+    });
+  },
+  onShow() {
+    this.getData();
+  },
+  getData() {
+    const openid = wx.getStorageSync("openid");
+    if (!openid) {
+      this.setData({
+        isLogin: false,
+      });
+      return false;
+    }
+    wx.showLoading({
+      title: "",
+    });
+    const nowDate = new Date();
+    const year = nowDate.getFullYear();
+    const month = nowDate.getMonth() + 1;
+    const day = nowDate.getDate();
+    const monthStart = Date.parse(`${year}-${month}-01 00:00:00`);
+    const monthEnd = Date.parse(`${year}-${month + 1}-01 00:00:00`);
+    wx.cloud
+      .callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: this.data.envId,
+        },
+        data: {
+          type: "selectRecord",
+          dbName: "bills",
+          where: {
+            openid: openid,
+            monthStart,
+            monthEnd,
+          },
+        },
+      })
+      .then((resp) => {
+        console.log(resp);
+        this.initData(resp.result);
+        wx.hideLoading();
+      })
+      .catch((e) => {
+        console.log(e);
+        this.setData({
+          showUploadTip: true,
+        });
+        wx.hideLoading();
+      });
+  },
+  timeToAll(value) {
+    const date = new Date(value);
+    if (!value) {
+      return value;
+    } else {
+      value =
+        date.getFullYear().toString() +
+        "年" +
+        (date.getMonth() + 1).toString() +
+        "月" +
+        date.getDate().toString() +
+        "日";
+      return value;
+    }
+  },
+  initData(baseData) {
+    let tempMap = {};
+    let tempArr = [];
+    baseData.forEach((item) => {
+      const tempDate = new Date(item.time).getDate();
+      if (!tempMap.hasOwnProperty(tempDate)) {
+        tempMap[tempDate] = {
+          date: this.timeToAll(item.time),
+          pay: 0,
+          income: 0,
+          data: [],
+        };
+        tempArr.push(tempMap[tempDate]);
+      }
+      tempMap[tempDate].data.push(item);
+      if (item.billType === "pay") {
+        tempMap[tempDate].pay = tempMap[tempDate].pay + Number(item.amount);
+      } else {
+        tempMap[tempDate].income =
+          tempMap[tempDate].income + Number(item.amount);
+      }
+    });
+
+    // let tempArr = [];
+    // for (let key in tempMap) {
+    //   tempArr.push(tempMap[key]);
+    // }
+    console.log(tempMap, tempArr);
+    this.setData({
+      monthDatas: tempArr,
     });
   },
   changeView() {

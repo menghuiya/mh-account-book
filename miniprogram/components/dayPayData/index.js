@@ -1,5 +1,6 @@
 // miniprogram/components/cloudTipModal/index.js
 const { payTypeMap } = require("../../utils/mokeData");
+const formDate = require("../../utils/formatDate");
 Component({
   /**
    * 页面的初始数据
@@ -14,5 +15,9 @@ Component({
     },
   },
 
-  methods: {},
+  methods: {
+    formDates(fmt, time) {
+      return formDate(fmt, time);
+    },
+  },
 });

@@ -1,5 +1,6 @@
 // index.js
 // const app = getApp()
+const { envList } = require("../../envList.js");
 const formDate = require("../../utils/formatDate");
 const {
   mokeDataForPayType,
@@ -7,6 +8,7 @@ const {
 } = require("../../utils/mokeData");
 Page({
   data: {
+    selectedEnv: envList[0],
     active: 0,
     billType: "pay",
     show: false,
@@ -16,24 +18,28 @@ Page({
         type: "1",
         icon: "gold-coin",
         iconColor: "#FFD30C",
+        code: "cash",
       },
       {
         name: "微信",
         type: "2",
         icon: "wechat-pay",
         iconColor: "#06C05F",
+        code: "wechat",
       },
       {
         name: "支付宝",
         type: "3",
         icon: "alipay",
         iconColor: "#1477FE",
+        code: "alipay",
       },
       {
         name: "银行卡",
         type: "4",
         icon: "card",
         iconColor: "#161616",
+        code: "card",
       },
     ],
 
@@ -165,16 +171,60 @@ Page({
     this.closePopup();
   },
   savePay() {
+    const openid = wx.getStorageSync("openid");
+    if (!openid) {
+      wx.showToast({
+        title: "请先登录！",
+        icon: "error",
+        duration: 2000,
+      });
+      return false;
+    }
     const saveData = {
-      amount: this.data.amount,
-      selectType: this.data.selectType,
-      mark: this.data.mark,
-      currentDate: this.data.currentDate,
-      payParentType: this.data.payParentType,
-      payChildType: this.data.payChildType,
-      billType: this.data.billType,
+      amount: this.data.amount, //金额
+      payType: this.data.selectType.code, //支付方式
+      desc: this.data.mark, //备注
+      creatTime: Date.now(), //创建时间
+      parentType: this.data.payParentType, //一级分类
+      childType: this.data.payChildType, //二级分类
+      billType: this.data.billType, //收入还是支出
+      time: this.data.currentDate, //交易时间
+      openid: openid, //用户id
     };
 
     console.log(saveData);
+    this.postData(saveData);
+  },
+  postData(saveData) {
+    wx.showLoading({
+      title: "正在保存",
+    });
+    wx.cloud
+      .callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: this.data.selectedEnv.envId,
+        },
+        data: {
+          type: "insertRecord",
+          dbName: "bills",
+          data: saveData,
+        },
+      })
+      .then((resp) => {
+        wx.hideLoading();
+        wx.showToast({
+          title: "保存成功！",
+          icon: "success",
+          duration: 2000,
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+        this.setData({
+          showUploadTip: true,
+        });
+        wx.hideLoading();
+      });
   },
 });

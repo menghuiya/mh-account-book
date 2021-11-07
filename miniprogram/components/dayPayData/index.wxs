@@ -1,0 +1,33 @@
+var filter = {
+  numberToFixed: function (value) {
+    return value.toFixed(2);
+  },
+  timeToMin: function (date) {
+    var date = getDate(date);
+    var fmt = "";
+    if (!date) {
+      return "";
+    } else {
+      var value =
+        date.getHours().toString() + ":" + date.getMinutes().toString();
+      return value;
+    }
+  },
+  timeToAll: function (value) {
+    var date = getDate(value);
+    if (!value) {
+      return value;
+    } else {
+      value =
+        date.getFullYear().toString() +
+        "年" +
+        (date.getMonth() + 1).toString() +
+        "月" +
+        date.getDate().toString() +
+        "日";
+      return value;
+    }
+  },
+};
+// 导出对外暴露的属性
+module.exports = filter;

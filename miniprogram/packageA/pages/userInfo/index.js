@@ -5,6 +5,7 @@ import Toast from "@vant/weapp/toast/toast";
 const { mokeDataOccupation } = require("../../../utils/mokeData");
 Page({
   data: {
+    envId: "",
     isLogin: false,
     occupations: mokeDataOccupation,
     showProfession: false,
@@ -32,14 +33,48 @@ Page({
       sign: "一条简单签名",
     }, //可以提交的
   },
+  onLoad(options) {
+    this.setData({
+      envId: options.envId,
+    });
+  },
   onShow() {
     const tempUserInfo = wx.getStorageSync("userInfo");
-    if (tempUserInfo) {
-      this.setData({
-        userInfo: Object.assign(this.data.userInfo, tempUserInfo),
-        isLogin: true,
+    // if (tempUserInfo) {
+    //   this.setData({
+    //     userInfo: Object.assign(this.data.userInfo, tempUserInfo),
+    //     isLogin: true,
+    //   });
+    // }
+    wx.showLoading({
+      title: "",
+    });
+    wx.cloud
+      .callFunction({
+        name: "quickstartFunctions",
+        config: {
+          env: this.data.envId,
+        },
+        data: {
+          type: "selectRecord",
+          dbName: "user",
+          openid: tempUserInfo.openid,
+        },
+      })
+      .then((resp) => {
+        this.setData({
+          userInfo: Object.assign(tempUserInfo, resp.result),
+          isLogin: true,
+        });
+        wx.hideLoading();
+      })
+      .catch((e) => {
+        console.log(e);
+        this.setData({
+          showUploadTip: true,
+        });
+        wx.hideLoading();
       });
-    }
   },
   showProfession() {
     this.setData({
