@@ -12,9 +12,12 @@
     </view>
   </view>
   <view class="allBills-body">
-    <view class="allBills-body-tps">总支出</view>
+    <view class="allBills-body-nav">
+      <view class="allBills-body-tps allBills-body-tps-active">总支出</view>
+      <view class="allBills-body-tps">总收入</view>
+    </view>
     <view class="allBills-body-total">￥23423.89</view>
-    <view class="allBills-body-cate" wx:for="{{cateData}}" wx:for-item="item" wx:key="id">
+    <view class="allBills-body-cate" wx:for="{{cateData}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bind:tap="onOpen">
       <view class="allBills-body-cate-left">
         <view class="cate-top">
           <view class="cate-top-left">
@@ -33,3 +36,11 @@
     </view>
   </view>
 </view>
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 100%;" closeable close-icon="arrow-down" bind:close="onClose">
+  <view class="allBills-pop">
+    <view class="allBills-pop-head"></view>
+    <view class="allBills-pop-body">
+      <day-pay-data payDatas="{{monthDatas}}"></day-pay-data>
+    </view>
+  </view>
+</van-popup>

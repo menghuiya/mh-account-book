@@ -39,6 +39,7 @@ Page({
     paymentStr: "7成", // 首付比例
     payItem: 20, //期限
     loanAmount: "根据比例自动计算",
+    show: false,
   },
 
   /**
@@ -94,5 +95,15 @@ Page({
         loanAmount: "根据比例自动计算",
       });
     }
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  onComputed() {
+    this.setData({
+      show: true,
+    });
   },
 });

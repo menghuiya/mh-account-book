@@ -3,7 +3,8 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-field": "@vant/weapp/field/index",
-    "van-stepper": "@vant/weapp/stepper/index"
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-popup": "@vant/weapp/popup/index"
   },
   "navigationBarTitleText": "房贷计算器",
   "navigationBarBackgroundColor": "#ffd608",

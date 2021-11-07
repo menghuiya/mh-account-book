@@ -1,6 +1,5 @@
 // index.js
 // const app = getApp()
-const { envList } = require("../../envList.js");
 const { payTypeMap } = require("../../utils/mokeData");
 Page({
   data: {
@@ -108,39 +107,6 @@ Page({
     });
   },
 
-  onClickDatabase(powerList) {
-    wx.showLoading({
-      title: "",
-    });
-    wx.cloud
-      .callFunction({
-        name: "quickstartFunctions",
-        config: {
-          env: this.data.selectedEnv.envId,
-        },
-        data: {
-          type: "createCollection",
-        },
-      })
-      .then((resp) => {
-        if (resp.result.success) {
-          this.setData({
-            haveCreateCollection: true,
-          });
-        }
-        this.setData({
-          powerList,
-        });
-        wx.hideLoading();
-      })
-      .catch((e) => {
-        console.log(e);
-        this.setData({
-          showUploadTip: true,
-        });
-        wx.hideLoading();
-      });
-  },
   onLoad() {
     // const date = new Date();
     // this.setData({

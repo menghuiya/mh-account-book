@@ -1,0 +1,20 @@
+.mh-body-card-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.mh-cell-label {
+  width: 400rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mh-cell-value-pay {
+  color: #808187;
+  font-weight: 600;
+}
+.mh-cell-value-income {
+  color: #ff8c08;
+  font-weight: 600;
+}

@@ -100,7 +100,7 @@ page {
 .mortgage-content {
   flex: 1;
   background-color: #f6f6f6;
-  padding-top: 200rpx;
+  padding-top: 150rpx;
   padding-bottom: constant(safe-area-inset-bottom); /*兼容 IOS<11.2*/
   padding-bottom: env(safe-area-inset-bottom); /*兼容 IOS>11.2*/
 }
@@ -149,4 +149,15 @@ page {
   justify-content: space-around;
   text-align: center;
   padding: 20rpx;
+}
+
+.mortgage-content-btn {
+  margin: 80rpx 70rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.mortgage-content-btn-text {
+  font-weight: 600;
+  color: #000;
 }

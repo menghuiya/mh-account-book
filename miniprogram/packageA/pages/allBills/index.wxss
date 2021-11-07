@@ -40,8 +40,16 @@ page {
 .allBills-body {
   padding: 20rpx;
 }
+.allBills-body-nav {
+  display: flex;
+}
 .allBills-body-tps {
   font-size: 24rpx;
+  margin-right: 20rpx;
+  color: #c5c6ca;
+}
+.allBills-body-tps-active {
+  color: #000;
 }
 
 .allBills-body-total {
@@ -53,7 +61,7 @@ page {
 .allBills-body-cate {
   display: flex;
   align-items: center;
-  padding: 10rpx 0;
+  padding: 15rpx 0;
 }
 
 .allBills-body-cate-left {
@@ -87,4 +95,32 @@ page {
 
 .allBills-body-cate-right {
   padding: 10rpx;
+}
+
+.allBills-pop {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.allBills-pop-head {
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  height: 40rpx;
+}
+.allBills-pop-head-left {
+  flex: 1;
+  overflow-x: auto;
+  text-align: center;
+  font-weight: 600;
+}
+
+.allBills-pop-head-right {
+  padding-left: 20rpx;
+  font-size: 40rpx;
+  color: #c5c6ca;
+}
+.allBills-pop-body {
+  flex: 1;
+  overflow-y: scroll;
 }

@@ -33,34 +33,41 @@
       <!-- <van-cell title="房产总价" value="请输入房价" size="large" /> -->
       <van-field label="房产总价" is-link model:value="{{ totalAmount }}" size="large" input-align="right" placeholder="请输入房价" bind:blur="handleBlur" />
       <van-cell title="首付比例" is-link value="{{paymentStr}}" size="large" bind:tap="openPayment" />
-      <van-cell title="需要贷款金额" value="{{loanAmount}}" size="large" />
-      <van-cell title="利率" is-link value="4.90%(最新)利率" size="large" />
+      <van-cell title="需要贷款金额(元)" value="{{loanAmount}}" size="large" />
+      <van-cell title="利率(%)" is-link value="4.90%(最新)利率" size="large" />
       <!-- <van-cell title="期限" is-link value="30年" size="large" bind:tap="openItem" /> -->
-      <van-cell title="期限" size="large">
+      <van-cell title="期限(年)" size="large">
         <van-stepper value="{{ payItem }}" min="1" max="30" bind:change="onChange" />
       </van-cell>
     </van-cell-group>
-    <view class="mortgage-content-tps">
-      查看等额本金还款详情
-      <van-icon name="arrow-down" />
-    </view>
-    <view class="mortgage-content-data">
-      <view class="mortgage-content-data-head">
-        <text class="data-text">月份</text>
-        <text class="data-text">月供金额</text>
-        <text class="data-text">剩余本金</text>
-        <text class="data-text">剩余总额</text>
-      </view>
-      <view class="mortgage-content-data-body">
-        <view class="mortgage-content-data-item" wx:for="{{dataList}}" wx:for-item="item" wx:key="month">
-          <text class="data-text">{{item.month}}</text>
-          <text class="data-text">{{item.monthAmount}}</text>
-          <text class="data-text">{{item.reAmount}}</text>
-          <text class="data-text">{{item.reTotal}}</text>
-        </view>
-      </view>
+    <view class="mortgage-content-btn">
+      <van-button color="#FFD608" type="primary" block bind:tap="onComputed">
+        <text class="mortgage-content-btn-text">计算房贷</text>
+      </van-button>
     </view>
   </view>
 </view>
 <van-action-sheet show="{{ loanShow }}" actions="{{ loanTypes }}" bind:close="onLoanClose" bind:select="onLoanSelect" />
 <van-action-sheet show="{{ paymentShow }}" actions="{{ payments }}" bind:close="onPaymentClose" bind:select="onPaymentSelect" />
+<van-popup show="{{ show }}" position="bottom" custom-style="height: 100%;background:#F6F6F6" bind:close="onClose">
+  <view class="mortgage-content-tps" bind:tap="onClose">
+    关闭等额本金还款详情
+    <van-icon name="arrow-down" />
+  </view>
+  <view class="mortgage-content-data">
+    <view class="mortgage-content-data-head">
+      <text class="data-text">月份</text>
+      <text class="data-text">月供金额</text>
+      <text class="data-text">剩余本金</text>
+      <text class="data-text">剩余总额</text>
+    </view>
+    <view class="mortgage-content-data-body">
+      <view class="mortgage-content-data-item" wx:for="{{dataList}}" wx:for-item="item" wx:key="month">
+        <text class="data-text">{{item.month}}</text>
+        <text class="data-text">{{item.monthAmount}}</text>
+        <text class="data-text">{{item.reAmount}}</text>
+        <text class="data-text">{{item.reTotal}}</text>
+      </view>
+    </view>
+  </view>
+</van-popup>

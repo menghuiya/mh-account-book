@@ -66,4 +66,9 @@ Page({
       showView: !this.data.showView,
     });
   },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
 });

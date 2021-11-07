@@ -4,7 +4,9 @@
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-share-sheet": "@vant/weapp/share-sheet/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "navigationBarTitleText": "个人中心",
   "navigationBarBackgroundColor": "#FFD608",
