@@ -9,6 +9,8 @@ Page({
     payTypeMap: payTypeMap,
     showView: true,
     monthDatas: [],
+    pay: 0,
+    income: 0,
   },
 
   onClickLeft() {
@@ -50,7 +52,11 @@ Page({
     const day = nowDate.getDate();
     console.log(`${year}-${month}-01 00:00:00`);
     const monthStart = Date.parse(`${year}/${month}/01 00:00:00`);
-    const monthEnd = Date.parse(`${year}/${month + 1}/01 00:00:00`);
+    const monthEnd = Date.parse(
+      `${month === 12 ? year + 1 : year}/${
+        month === 12 ? 1 : month + 1
+      }/01 00:00:00`
+    );
     wx.cloud
       .callFunction({
         name: "quickstartFunctions",
@@ -98,6 +104,8 @@ Page({
   initData(baseData) {
     let tempMap = {};
     let tempArr = [];
+    let tempPay = 0,
+      tempIncome = 0;
     baseData.forEach((item) => {
       const tempDate = new Date(item.time).getDate();
       if (!tempMap.hasOwnProperty(tempDate)) {
@@ -112,9 +120,11 @@ Page({
       tempMap[tempDate].data.push(item);
       if (item.billType === "pay") {
         tempMap[tempDate].pay = tempMap[tempDate].pay + Number(item.amount);
+        tempPay += Number(item.amount);
       } else {
         tempMap[tempDate].income =
           tempMap[tempDate].income + Number(item.amount);
+        tempIncome += Number(item.amount);
       }
     });
 
@@ -122,9 +132,11 @@ Page({
     // for (let key in tempMap) {
     //   tempArr.push(tempMap[key]);
     // }
-    console.log(tempMap, tempArr);
+    console.log(tempMap);
     this.setData({
       monthDatas: tempArr,
+      pay: tempPay,
+      income: tempIncome,
     });
   },
   changeView() {

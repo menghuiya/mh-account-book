@@ -8,8 +8,15 @@ var filter = {
     if (!date) {
       return "";
     } else {
-      var value =
-        date.getHours().toString() + ":" + date.getMinutes().toString();
+      var h =
+        date.getHours() > 9
+          ? date.getHours().toString()
+          : "0" + date.getHours();
+      var m =
+        date.getMinutes() > 9
+          ? date.getMinutes().toString()
+          : "0" + date.getMinutes();
+      var value = h + ":" + m;
       return value;
     }
   },

@@ -1,5 +1,5 @@
 <wxs module="filters" src="./index.wxs"></wxs>
-<van-cell-group title="今天 {{monthItem.date}}" wx:for="{{payDatas}}" wx:for-item="monthItem" wx:key="date">
+<van-cell-group title="{{monthItem.date}}" wx:for="{{payDatas}}" wx:for-item="monthItem" wx:key="date">
   <van-cell title="{{payTypeMap[dayItem.childType].name}}" use-label-slot border="{{false}}" wx:for="{{monthItem.data}}" wx:for-item="dayItem" wx:key="id" link-type="navigateTo" url="/packageA/pages/billDetail/index?id={{dayItem._id}}">
     <iconfont name="{{payTypeMap[dayItem.childType].icon}}" class="mh-body-card-img" slot="icon" />
     <view class="mh-cell-label" slot="label">

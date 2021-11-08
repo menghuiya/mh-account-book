@@ -8,7 +8,7 @@
     <view class="home-head-amount">
       <text class="home-head-amount-tag">￥</text>
       <text class="home-head-amount-data">
-        <text wx:if="{{showView}}">4328.36</text>
+        <text wx:if="{{showView}}">{{pay}}</text>
         <text wx:else>*****</text>
       </text>
       <van-icon name="{{showView?'/images/icons/close.png':'/images/icons/open.png'}}" bind:tap="changeView" />
@@ -18,7 +18,7 @@
         <view class="home-head-text">本月收入</view>
         <view class="home-head-info-data">
           <text class="hinfo-data-tag">￥</text>
-          <text class="info-data-text" wx:if="{{showView}}">4328.63</text>
+          <text class="info-data-text" wx:if="{{showView}}">{{income}}</text>
           <text class="info-data-text" wx:else>*****</text>
         </view>
       </view>
@@ -26,7 +26,7 @@
         <view class="home-head-text">剩余预算</view>
         <view class="home-head-info-data">
           <text class="hinfo-data-tag">￥</text>
-          <text class="info-data-text" wx:if="{{showView}}">4328.63</text>
+          <text class="info-data-text" wx:if="{{showView}}">{{income-pay}}</text>
           <text class="info-data-text" wx:else>*****</text>
         </view>
       </view>
