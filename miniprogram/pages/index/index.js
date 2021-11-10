@@ -15,7 +15,7 @@ Page({
 
   onClickLeft() {
     wx.navigateTo({
-      url: "/packageA/pages/property/index",
+      url: `/packageA/pages/property/index?envId=${this.data.selectedEnv.envId}`,
     });
   },
 
@@ -61,11 +61,12 @@ Page({
       .callFunction({
         name: "quickstartFunctions",
         config: {
-          env: this.data.envId,
+          env: this.data.selectedEnv.envId,
         },
         data: {
           type: "selectRecord",
           dbName: "bills",
+          from: "home",
           where: {
             openid: openid,
             monthStart,
@@ -132,7 +133,6 @@ Page({
     // for (let key in tempMap) {
     //   tempArr.push(tempMap[key]);
     // }
-    console.log(tempMap);
     this.setData({
       monthDatas: tempArr,
       pay: tempPay,

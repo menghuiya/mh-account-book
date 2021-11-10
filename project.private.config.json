@@ -31,9 +31,9 @@
                     "scene": null
                 },
                 {
-                    "name": "packageA/pages/mortgage/index",
-                    "pathName": "packageA/pages/mortgage/index",
-                    "query": "",
+                    "name": "packageA/pages/property/index",
+                    "pathName": "packageA/pages/property/index",
+                    "query": "envId=cloud1-2gazu7bbe49cd83f",
                     "scene": null
                 },
                 {

@@ -24,17 +24,46 @@ exports.main = async (event, context) => {
       }
       break;
     case event.dbName === "bills":
-      const { openid, monthStart, monthEnd } = event.where;
-      console.log(event.where);
-      var result = await db
-        .collection(event.dbName)
-        .where({
-          openid: openid,
-          time: _.gte(monthStart).and(_.lt(monthEnd)),
-        })
-        .orderBy("time", "desc")
-        .get();
-      return result.data;
+      if (event.from === "home") {
+        const { openid, monthStart, monthEnd } = event.where;
+        const result = await db
+          .collection(event.dbName)
+          .where({
+            openid: openid,
+            time: _.gte(monthStart).and(_.lt(monthEnd)),
+          })
+          .orderBy("time", "desc")
+          .get();
+        return result.data;
+      }
+      if (event.from === "oneDetail") {
+        const result = await db
+          .collection(event.dbName)
+          .doc(event.billId)
+          .get();
+        return result.data;
+      }
+      if (event.from === "property") {
+        const $ = db.command.aggregate;
+        if (event.fromType === "total") {
+          const result = await db
+            .collection(event.dbName)
+            .aggregate()
+            .match({
+              openid: event.openid,
+            })
+            .group({
+              _id: {
+                payType: "$payType",
+                billType: "$billType",
+              },
+              amount: $.sum("$amount"),
+            })
+            .end();
+
+          return result.list;
+        }
+      }
       break;
     default:
       return await db.collection("sales").get();

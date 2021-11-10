@@ -3,10 +3,10 @@
   <view class="detail-card">
     <view class="detail-card-top">
       <view class="detail-card-type">
-        <iconfont name="fruits" />
+        <iconfont name="{{payTypeMap[billData.childType].icon}}" />
       </view>
-      <view class="detail-card-top-name">水果</view>
-      <view class="detail-card-top-amount">-200.00</view>
+      <view class="detail-card-top-name">{{payTypeMap[billData.childType].name}}</view>
+      <view class="detail-card-top-amount">￥{{billData.amount}}</view>
     </view>
     <view class="order-bg">
       <view class="left-circle"></view>
@@ -14,11 +14,11 @@
       <view class="order-line"></view>
     </view>
     <view class="detail-card-bottom">
-      <van-cell title="支付方式" value="支付宝" />
-      <van-cell title="记录日期" value="2021年10月28日 12:00" />
-      <van-cell title="消费日期" value="2021年10月27日 12:00" />
-      <van-cell title="支付类型" value="支出-水果" />
-      <van-cell title="账单备注" value="我就是买个水果，为啥呢！" border="{{false}}" />
+      <van-cell title="支付方式" value="{{billData.payTypeStr}}" />
+      <van-cell title="记录日期" value="{{billData.createTimeStr}}" />
+      <van-cell title="消费日期" value="{{billData.timeStr}}" />
+      <van-cell title="支付类型" value="{{billTypeMap[billData.billType]}}-{{payTypeMap[billData.childType].name}}" />
+      <van-cell title="账单备注" value="{{billData.desc}}" border="{{false}}" />
     </view>
   </view>
   <view class="detail-footer">

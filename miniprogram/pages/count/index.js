@@ -53,6 +53,7 @@ Page({
       type: "1",
       icon: "gold-coin",
       iconColor: "#FFD30C",
+      code: "cash",
     },
     inputFocus: false,
     markHeight: { maxHeight: 100, minHeight: 50 },
@@ -181,7 +182,7 @@ Page({
       return false;
     }
     const saveData = {
-      amount: this.data.amount, //金额
+      amount: Number(this.data.amount), //金额
       payType: this.data.selectType.code, //支付方式
       desc: this.data.mark, //备注
       creatTime: Date.now(), //创建时间

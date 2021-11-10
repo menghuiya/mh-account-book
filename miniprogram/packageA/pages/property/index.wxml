@@ -5,7 +5,7 @@
     <view class="property-head-amount">
       <text class="property-head-amount-tag">￥</text>
       <text class="property-head-amount-data">
-        <text wx:if="{{showView}}">83664.36</text>
+        <text wx:if="{{showView}}">{{total}}</text>
         <text wx:else>*****</text>
       </text>
       <van-icon name="{{showView?'/images/icons/close.png':'/images/icons/open.png'}}" bind:tap="changeView" />
@@ -15,7 +15,7 @@
         <view class="property-head-text">总收入</view>
         <view class="property-head-info-data">
           <text class="hinfo-data-tag">￥</text>
-          <text class="info-data-text" wx:if="{{showView}}">162762.89</text>
+          <text class="info-data-text" wx:if="{{showView}}">{{totalIncome}}</text>
           <text class="info-data-text" wx:else>*****</text>
         </view>
       </view>
@@ -23,7 +23,7 @@
         <view class="property-head-text">总支出</view>
         <view class="property-head-info-data">
           <text class="hinfo-data-tag">￥</text>
-          <text class="info-data-text" wx:if="{{showView}}">79098.53</text>
+          <text class="info-data-text" wx:if="{{showView}}">{{totalPay}}</text>
           <text class="info-data-text" wx:else>*****</text>
         </view>
       </view>

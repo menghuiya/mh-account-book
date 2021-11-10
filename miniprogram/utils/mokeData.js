@@ -521,9 +521,41 @@ const mokeDataOccupation = [
   "失业",
 ];
 
+const payTopTypeMap = {
+  cash: {
+    name: "现金",
+    type: "1",
+    icon: "gold-coin",
+    iconColor: "#FFD30C",
+    code: "cash",
+  },
+  wechat: {
+    name: "微信",
+    type: "2",
+    icon: "wechat-pay",
+    iconColor: "#06C05F",
+    code: "wechat",
+  },
+  alipay: {
+    name: "支付宝",
+    type: "3",
+    icon: "alipay",
+    iconColor: "#1477FE",
+    code: "alipay",
+  },
+  card: {
+    name: "银行卡",
+    type: "4",
+    icon: "card",
+    iconColor: "#161616",
+    code: "card",
+  },
+};
+
 module.exports = {
   mokeDataForPayType,
   mokeDataForIncomType,
   mokeDataOccupation,
   payTypeMap,
+  payTopTypeMap,
 };
