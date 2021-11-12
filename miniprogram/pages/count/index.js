@@ -47,7 +47,7 @@ Page({
     payChildTypes: [],
     payParentType: "food", //一级分类默认code
     payChildType: "", //耳机分类code
-    amount: 100,
+    amount: 0,
     selectType: {
       name: "现金",
       type: "1",

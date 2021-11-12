@@ -33,7 +33,7 @@
     </view>
   </view>
   <view class="home-content">
-    <van-cell title="最近账单" size="large" is-link value="全部账单" border="{{false}}" url="/packageA/pages/allBills/index" />
+    <van-cell title="最近账单" size="large" is-link value="全部账单" border="{{false}}" url="/packageA/pages/allBills/index?envId={{selectedEnv.envId}}" />
     <day-pay-data payDatas="{{monthDatas}}"></day-pay-data>
   </view>
 </view>

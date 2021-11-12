@@ -16,7 +16,7 @@
       <view class="allBills-body-tps allBills-body-tps-active">总支出</view>
       <view class="allBills-body-tps">总收入</view>
     </view>
-    <view class="allBills-body-total">￥23423.89</view>
+    <view class="allBills-body-total">￥{{total}}</view>
     <view class="allBills-body-cate" wx:for="{{cateData}}" wx:for-item="item" wx:key="id" data-id="{{item.id}}" bind:tap="onOpen">
       <view class="allBills-body-cate-left">
         <view class="cate-top">

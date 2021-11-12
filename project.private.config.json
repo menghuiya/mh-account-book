@@ -1,66 +1,66 @@
 {
-    "setting": {},
-    "condition": {
-        "plugin": {
-            "list": []
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "db guide",
+          "pathName": "pages/databaseGuide/databaseGuide",
+          "query": ""
         },
-        "game": {
-            "list": []
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
         },
-        "gamePlugin": {
-            "list": []
+        {
+          "name": "pages/count/index",
+          "pathName": "pages/count/index",
+          "query": "",
+          "scene": null
         },
-        "miniprogram": {
-            "list": [
-                {
-                    "id": -1,
-                    "name": "db guide",
-                    "pathName": "pages/databaseGuide/databaseGuide",
-                    "query": ""
-                },
-                {
-                    "name": "pages/index/index",
-                    "pathName": "pages/index/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/count/index",
-                    "pathName": "pages/count/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "packageA/pages/property/index",
-                    "pathName": "packageA/pages/property/index",
-                    "query": "envId=cloud1-2gazu7bbe49cd83f",
-                    "scene": null
-                },
-                {
-                    "name": "packageA/pages/allBills/index",
-                    "pathName": "packageA/pages/allBills/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/updateRecord/index",
-                    "pathName": "packageA/pages/about/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/updateRecordResult/index",
-                    "pathName": "pages/updateRecordResult/index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/updateRecordSuccess/index",
-                    "pathName": "pages/updateRecordSuccess/index",
-                    "query": "",
-                    "scene": null
-                }
-            ]
+        {
+          "name": "packageA/pages/allBills/index",
+          "pathName": "packageA/pages/allBills/index",
+          "query": "envId=cloud1-2gazu7bbe49cd83f",
+          "scene": null
+        },
+        {
+          "name": "packageA/pages/allBills/index",
+          "pathName": "packageA/pages/allBills/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/updateRecord/index",
+          "pathName": "packageA/pages/about/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/updateRecordResult/index",
+          "pathName": "pages/updateRecordResult/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/updateRecordSuccess/index",
+          "pathName": "pages/updateRecordSuccess/index",
+          "query": "",
+          "scene": null
         }
+      ]
     }
+  }
 }

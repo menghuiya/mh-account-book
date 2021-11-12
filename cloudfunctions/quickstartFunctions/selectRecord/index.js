@@ -5,64 +5,109 @@ cloud.init({
 });
 const db = cloud.database();
 const _ = db.command;
+const $ = db.command.aggregate;
+const getUser = async (event) => {
+  const result = await db
+    .collection(event.dbName)
+    .where({
+      openid: event.openid,
+    })
+    .get();
+  if (result.data.length) {
+    return result.data[0];
+  } else {
+    return null;
+  }
+};
+const getHome = async (event) => {
+  const { openid, monthStart, monthEnd } = event.where;
+  const result = await db
+    .collection(event.dbName)
+    .where({
+      openid: openid,
+      time: _.gte(monthStart).and(_.lt(monthEnd)),
+    })
+    .orderBy("time", "desc")
+    .get();
+  return result.data;
+};
+
+const getBillDetail = async (event) => {
+  const result = await db.collection(event.dbName).doc(event.billId).get();
+  return result.data;
+};
+const getProperty = async (event) => {
+  const result = await db
+    .collection(event.dbName)
+    .aggregate()
+    .match({
+      openid: event.openid,
+    })
+    .group({
+      _id: {
+        payType: "$payType",
+        billType: "$billType",
+      },
+      amount: $.sum("$amount"),
+    })
+    .end();
+  return result.list;
+};
+const getAllBills = async (event) => {
+  const result = await db
+    .collection(event.dbName)
+    .aggregate()
+    .match({
+      openid: event.openid,
+      billType: "pay",
+    })
+    .group({
+      _id: "$parentType",
+      amount: $.sum("$amount"),
+    })
+    .end();
+  return result.list;
+};
+
+const getAllBillsDetail = async (event) => {
+  const { openid, monthStart, monthEnd, parentType } = event.where;
+  const result = await db
+    .collection(event.dbName)
+    .where({
+      openid: openid,
+      parentType: parentType,
+      time: _.gte(monthStart).and(_.lt(monthEnd)),
+    })
+    .orderBy("time", "desc")
+    .get();
+  return result.data;
+};
+
 // 查询数据库集合云函数入口函数
 exports.main = async (event, context) => {
   // 返回数据库查询结果 重写
   console.log(event.dbName);
   switch (true) {
     case event.dbName === "user":
-      var result = await db
-        .collection(event.dbName)
-        .where({
-          openid: event.openid,
-        })
-        .get();
-      if (result.data.length) {
-        return result.data[0];
-      } else {
-        return null;
-      }
+      return getUser(event);
       break;
     case event.dbName === "bills":
       if (event.from === "home") {
-        const { openid, monthStart, monthEnd } = event.where;
-        const result = await db
-          .collection(event.dbName)
-          .where({
-            openid: openid,
-            time: _.gte(monthStart).and(_.lt(monthEnd)),
-          })
-          .orderBy("time", "desc")
-          .get();
-        return result.data;
+        return getHome(event);
       }
       if (event.from === "oneDetail") {
-        const result = await db
-          .collection(event.dbName)
-          .doc(event.billId)
-          .get();
-        return result.data;
+        return getBillDetail(event);
       }
       if (event.from === "property") {
-        const $ = db.command.aggregate;
         if (event.fromType === "total") {
-          const result = await db
-            .collection(event.dbName)
-            .aggregate()
-            .match({
-              openid: event.openid,
-            })
-            .group({
-              _id: {
-                payType: "$payType",
-                billType: "$billType",
-              },
-              amount: $.sum("$amount"),
-            })
-            .end();
-
-          return result.list;
+          getProperty(event);
         }
+      }
+      if (event.from === "allBills") {
+        return getAllBills(event);
+      }
+      if (event.from === "allBillsDetail") {
+        return getAllBillsDetail(event);
       }
       break;
     default:
