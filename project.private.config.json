@@ -31,8 +31,8 @@
           "scene": null
         },
         {
-          "name": "packageA/pages/allBills/index",
-          "pathName": "packageA/pages/allBills/index",
+          "name": "packageA/pages/property/index",
+          "pathName": "packageA/pages/property/index",
           "query": "envId=cloud1-2gazu7bbe49cd83f",
           "scene": null
         },

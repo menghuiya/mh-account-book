@@ -54,12 +54,14 @@ const getProperty = async (event) => {
   return result.list;
 };
 const getAllBills = async (event) => {
+  const { openid, billType } = event.where;
+  console.log(event);
   const result = await db
     .collection(event.dbName)
     .aggregate()
     .match({
-      openid: event.openid,
-      billType: "pay",
+      openid: openid,
+      billType: billType,
     })
     .group({
       _id: "$parentType",
@@ -76,11 +78,20 @@ const getAllBillsDetail = async (event) => {
     .where({
       openid: openid,
       parentType: parentType,
-      time: _.gte(monthStart).and(_.lt(monthEnd)),
+      // time: _.gte(monthStart).and(_.lt(monthEnd)),
     })
     .orderBy("time", "desc")
     .get();
   return result.data;
+};
+/**
+ * 删除账单
+ * @param {*} event
+ * @returns
+ */
+const deleteBill = async (event) => {
+  const result = await db.collection(event.dbName).doc(event.billId).remove();
+  return result.stats.removed;
 };
 
 // 查询数据库集合云函数入口函数
@@ -100,7 +111,7 @@ exports.main = async (event, context) => {
       }
       if (event.from === "property") {
         if (event.fromType === "total") {
-          getProperty(event);
+          return getProperty(event);
         }
       }
       if (event.from === "allBills") {
@@ -108,6 +119,9 @@ exports.main = async (event, context) => {
       }
       if (event.from === "allBillsDetail") {
         return getAllBillsDetail(event);
+      }
+      if (event.from === "deleteBill") {
+        return deleteBill(event);
       }
       break;
     default:

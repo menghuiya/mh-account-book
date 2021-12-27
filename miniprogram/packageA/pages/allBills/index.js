@@ -93,11 +93,30 @@ Page({
         code: "otherPay",
       },
     ],
+    cateDataIncome: [
+      {
+        id: 1,
+        name: "职业收入",
+        rate: 0,
+        amount: 0.0,
+        color: "#F5410F",
+        code: "work",
+      },
+      {
+        id: 2,
+        name: "其他收入",
+        rate: 0,
+        amount: 0.0,
+        color: "#FF8706",
+        code: "otherIncom",
+      },
+    ],
     monthDatas: [],
     activeMonth: 5,
     show: false,
     activeCate: 0,
     total: 0,
+    allType: "pay", //总支出 总收入
   },
 
   /**
@@ -110,7 +129,7 @@ Page({
       envId: options.envId,
       activeMonth: month,
     });
-    this.getData();
+    this.getData("pay");
   },
 
   /**
@@ -137,11 +156,7 @@ Page({
     const year = nowDate.getFullYear();
     const month = nowDate.getMonth() + 1;
     const monthStart = Date.parse(`${year}/${month}/01 00:00:00`);
-    const monthEnd = Date.parse(
-      `${month === 12 ? year + 1 : year}/${
-        month === 12 ? 1 : month + 1
-      }/01 00:00:00`
-    );
+    const monthEnd = Date.parse(`${month === 12 ? year + 1 : year}/${month === 12 ? 1 : month + 1}/01 00:00:00`);
     wx.cloud
       .callFunction({
         name: "quickstartFunctions",
@@ -156,12 +171,12 @@ Page({
             openid: openid,
             monthStart,
             monthEnd,
+            billType: this.data.allType,
           },
         },
       })
       .then((resp) => {
-        console.log(resp);
-        this.initData(resp.result);
+        this.initData(resp.result, this.data.allType);
         wx.hideLoading();
       })
       .catch((e) => {
@@ -169,8 +184,8 @@ Page({
         wx.hideLoading();
       });
   },
-  initData(result) {
-    let tempCateData = this.data.cateData;
+  initData(result, type) {
+    let tempCateData = type === "pay" ? this.data.cateData : this.data.cateDataIncome;
     let tempTotal = result.reduce((pre, cur) => {
       return pre + cur.amount;
     }, 0);
@@ -179,10 +194,17 @@ Page({
       tempCateData[index].amount = item.amount;
       tempCateData[index].rate = ((item.amount / tempTotal) * 100).toFixed(2);
     });
-    this.setData({
-      total: tempTotal,
-      cateData: tempCateData,
-    });
+    if (type === "pay") {
+      this.setData({
+        total: tempTotal,
+        cateData: tempCateData,
+      });
+    } else {
+      this.setData({
+        total: tempTotal,
+        cateDataIncome: tempCateData,
+      });
+    }
   },
   getDetailData(parentType) {
     const openid = wx.getStorageSync("openid");
@@ -199,13 +221,8 @@ Page({
     const year = nowDate.getFullYear();
     const month = nowDate.getMonth() + 1;
     const day = nowDate.getDate();
-    console.log(`${year}-${month}-01 00:00:00`);
     const monthStart = Date.parse(`${year}/${month}/01 00:00:00`);
-    const monthEnd = Date.parse(
-      `${month === 12 ? year + 1 : year}/${
-        month === 12 ? 1 : month + 1
-      }/01 00:00:00`
-    );
+    const monthEnd = Date.parse(`${month === 12 ? year + 1 : year}/${month === 12 ? 1 : month + 1}/01 00:00:00`);
     wx.cloud
       .callFunction({
         name: "quickstartFunctions",
@@ -225,7 +242,6 @@ Page({
         },
       })
       .then((resp) => {
-        console.log(resp);
         this.initDetailData(resp.result);
         wx.hideLoading();
       })
@@ -238,13 +254,7 @@ Page({
     if (!value) {
       return value;
     } else {
-      value =
-        date.getFullYear().toString() +
-        "年" +
-        (date.getMonth() + 1).toString() +
-        "月" +
-        date.getDate().toString() +
-        "日";
+      value = date.getFullYear().toString() + "年" + (date.getMonth() + 1).toString() + "月" + date.getDate().toString() + "日";
       return value;
     }
   },
@@ -266,8 +276,7 @@ Page({
       if (item.billType === "pay") {
         tempMap[tempDate].pay = tempMap[tempDate].pay + Number(item.amount);
       } else {
-        tempMap[tempDate].income =
-          tempMap[tempDate].income + Number(item.amount);
+        tempMap[tempDate].income = tempMap[tempDate].income + Number(item.amount);
       }
     });
     this.setData({
@@ -282,6 +291,9 @@ Page({
     });
   },
   onOpen(e) {
+    this.setData({
+      monthDatas: [],
+    });
     const id = e.currentTarget.dataset.id;
     const tempData = this.data.cateData.find((item) => item.id === id);
     this.getDetailData(tempData.code);
@@ -294,5 +306,11 @@ Page({
     this.setData({
       show: false,
     });
+  },
+  hanldeChangeAll(e) {
+    this.setData({
+      allType: e.currentTarget.dataset.alltype,
+    });
+    this.getData();
   },
 });

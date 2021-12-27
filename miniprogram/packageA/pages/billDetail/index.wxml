@@ -26,7 +26,7 @@
       <van-icon name="edit" size="40rpx" color="#FF8C08" />
     </view>
     <view class="detail-footer-right">
-      <van-icon name="delete-o" size="40rpx" color="#808187" />
+      <van-icon name="delete-o" bind:tap="deleteBill" size="40rpx" color="#808187" />
     </view>
   </view>
 </view>

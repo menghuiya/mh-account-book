@@ -78,6 +78,7 @@ Page({
       });
       return false;
     }
+    console.log(openid);
     wx.cloud
       .callFunction({
         name: "quickstartFunctions",
